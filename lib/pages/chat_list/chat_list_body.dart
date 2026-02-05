@@ -4,6 +4,7 @@
 //
 // MODIFICATIONS:
 // - 2026-02-05: Add stories section to chat list - Simon
+// - 2026-02-05: Always show stories bar with add action - Simon
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -137,7 +138,7 @@ class ChatListViewBody extends StatelessWidget {
                         onStatusEdit: controller.setStatus,
                       ),
                     ),
-                  if (!controller.isSearchMode && stories.isNotEmpty)
+                  if (!controller.isSearchMode)
                     StoriesBar(rooms: stories, onTap: controller.onChatTap),
                   if (client.rooms.isNotEmpty && !controller.isSearchMode)
                     SizedBox(

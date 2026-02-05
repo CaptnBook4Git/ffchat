@@ -3,6 +3,7 @@
 //
 // MODIFICATIONS:
 // - 2026-02-05: Add full-screen story viewer for room images - Simon
+// - 2026-02-05: Use conditional assignment for page controller init - Simon
 
 import 'package:flutter/material.dart';
 
@@ -116,9 +117,7 @@ class _StoryViewerState extends State<StoryViewer> {
 
     _imageEvents = events;
 
-    if (_pageController == null) {
-      _pageController = PageController(initialPage: 0);
-    }
+    _pageController ??= PageController(initialPage: 0);
   }
 
   @override
