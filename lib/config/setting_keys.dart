@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 Krille Fear
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-06: Add settings keys for contacts import/matching - Simon
+
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -52,7 +59,10 @@ enum AppSettings<T> {
   // colorSchemeSeed stored as ARGB int
   colorSchemeSeedInt<int>('chat.fluffy.color_scheme_seed', 0xFF5625BA),
   emojiSuggestionLocale<String>('emoji_suggestion_locale', ''),
-  enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false);
+  enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false),
+
+  contactsMatchingEnabled<bool>('chat.fluffy.contacts_matching_enabled', false),
+  contactsLastImportAt<int>('chat.fluffy.contacts_last_import_at', 0);
 
   final String key;
   final T defaultValue;

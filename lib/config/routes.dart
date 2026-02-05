@@ -4,6 +4,7 @@
 //
 // MODIFICATIONS:
 // - 2026-02-05: Add story viewer route - Simon
+// - 2026-02-06: Wire contacts import route - Simon
 
 import 'dart:async';
 
@@ -29,6 +30,7 @@ import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart'
 import 'package:fluffychat/pages/login/login.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat.dart';
+import 'package:fluffychat/pages/import_contacts/import_contacts.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
 import 'package:fluffychat/pages/settings_3pid/settings_3pid.dart';
 import 'package:fluffychat/pages/settings_chat/settings_chat.dart';
@@ -187,8 +189,25 @@ abstract class AppRoutes {
             ),
             GoRoute(
               path: 'newprivatechat',
-              pageBuilder: (context, state) =>
-                  defaultPageBuilder(context, state, const NewPrivateChat()),
+              pageBuilder: (context, state) {
+                final initialSearchTerm = state.extra is String
+                    ? (state.extra as String)
+                    : null;
+                return defaultPageBuilder(
+                  context,
+                  state,
+                  NewPrivateChat(initialSearchTerm: initialSearchTerm),
+                );
+              },
+              redirect: loggedOutRedirect,
+            ),
+            GoRoute(
+              path: 'importcontacts',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                state,
+                const ImportContactsPage(),
+              ),
               redirect: loggedOutRedirect,
             ),
             GoRoute(

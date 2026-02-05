@@ -56,7 +56,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Open the camera and take a picture to share them with your contacts on FluffyChat.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Share contacts with your contacts in FluffyChat.</string>
+	<string>Import your device contacts to show them in FluffyChat and store them locally on this device. Optional: if you opt in, FluffyChat can privately match hashed phone numbers/emails against an identity server to find Matrix users.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>FluffyChat uses an app lock for an additional security level</string>
 	<key>NSLocationAlwaysUsageDescription</key>
