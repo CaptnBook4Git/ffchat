@@ -91,6 +91,8 @@
   "@addChatDescription": {},
   "addToSpace": "Add to space",
   "@addToSpace": {},
+  "addToStory": "Add to story",
+  "@addToStory": {},
   "admin": "Admin",
   "@admin": {
     "type": "String",

@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-05: Add AGPL header - Simon
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
