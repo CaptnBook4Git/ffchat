@@ -10,6 +10,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
 import 'package:fluffychat/utils/file_selector.dart';
+import 'package:fluffychat/utils/story_room_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class NewGroup extends StatefulWidget {
@@ -108,6 +109,26 @@ class NewGroupController extends State<NewGroup> {
     context.pop<String>(spaceId);
   }
 
+  Future<void> _createStory() async {
+    if (!mounted) return;
+    final storyId = await Matrix.of(context).client.createRoom(
+      preset: sdk.CreateRoomPreset.privateChat,
+      creationContent: {'type': CustomRoomTypes.story},
+      name: nameController.text.isNotEmpty
+          ? nameController.text.trim()
+          : 'My Story',
+      initialState: [
+        if (avatar != null)
+          sdk.StateEvent(
+            type: sdk.EventTypes.RoomAvatar,
+            content: {'url': avatarUrl.toString()},
+          ),
+      ],
+    );
+    if (!mounted) return;
+    context.go('/rooms/$storyId');
+  }
+
   void submitAction([dynamic _]) async {
     final client = Matrix.of(context).client;
 
@@ -133,6 +154,8 @@ class NewGroupController extends State<NewGroup> {
           await _createGroup();
         case CreateGroupType.space:
           await _createSpace();
+        case CreateGroupType.story:
+          await _createStory();
       }
     } catch (e, s) {
       sdk.Logs().d('Unable to create group', e, s);
@@ -147,4 +170,4 @@ class NewGroupController extends State<NewGroup> {
   Widget build(BuildContext context) => NewGroupView(this);
 }
 
-enum CreateGroupType { group, space }
+enum CreateGroupType { group, space, story }

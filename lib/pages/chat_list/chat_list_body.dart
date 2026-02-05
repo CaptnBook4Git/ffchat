@@ -151,6 +151,7 @@ class ChatListViewBody extends StatelessWidget {
                                   ActiveFilter.unread,
                                   ActiveFilter.groups,
                                   ActiveFilter.messages,
+                                  ActiveFilter.stories,
                                 ]
                                 .map(
                                   (filter) => Padding(
