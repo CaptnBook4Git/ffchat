@@ -24,6 +24,33 @@
   },
   "importNow": "Import now",
   "@importNow": {},
+
+  "importContacts": "Import contacts",
+  "@importContacts": {},
+
+  "featureNotAvailable": "This feature is not available on this platform.",
+  "@featureNotAvailable": {},
+
+  "noResultsFound": "No results found",
+  "@noResultsFound": {},
+
+  "lastSeenTime": "Last import",
+  "@lastSeenTime": {},
+
+  "importedContactsCount": "Imported contacts: {count}",
+  "@importedContactsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "importContactsMatchingTitle": "Match contacts with Matrix users",
+  "@importContactsMatchingTitle": {},
+
+  "importContactsMatchingSubtitle": "Optional. If enabled, FluffyChat can hash phone numbers and email addresses and query your identity server to find Matrix users.",
+  "@importContactsMatchingSubtitle": {},
   "importEmojis": "Import Emojis",
   "@importEmojis": {},
   "importFromZipFile": "Import from .zip file",

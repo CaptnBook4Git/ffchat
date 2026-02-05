@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 Krille Fear
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-06: Add entry point to contacts import (mobile) - Simon
+
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -153,6 +160,17 @@ class NewPrivateChatView extends StatelessWidget {
                             title: Text(L10n.of(context).createGroup),
                             onTap: () => context.go('/rooms/newgroup'),
                           ),
+                          if (PlatformInfos.isMobile)
+                            ListTile(
+                              leading: CircleAvatar(
+                                backgroundColor:
+                                    theme.colorScheme.surfaceContainerHigh,
+                                foregroundColor: theme.colorScheme.onSurface,
+                                child: const Icon(Icons.contacts_outlined),
+                              ),
+                              title: Text(L10n.of(context).importContacts),
+                              onTap: () => context.go('/rooms/importcontacts'),
+                            ),
                           if (PlatformInfos.isMobile)
                             ListTile(
                               leading: CircleAvatar(

@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 Krille Fear
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-06: Support initial search term deep-linking (contacts import) - Simon
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -17,7 +24,9 @@ import 'package:fluffychat/widgets/matrix.dart';
 import '../../widgets/adaptive_dialogs/user_dialog.dart';
 
 class NewPrivateChat extends StatefulWidget {
-  const NewPrivateChat({super.key});
+  final String? initialSearchTerm;
+
+  const NewPrivateChat({super.key, this.initialSearchTerm});
 
   @override
   NewPrivateChatController createState() => NewPrivateChatController();
@@ -99,6 +108,18 @@ class NewPrivateChatController extends State<NewPrivateChat> {
 
   void openUserModal(Profile profile) =>
       UserDialog.show(context: context, profile: profile);
+
+  @override
+  void initState() {
+    super.initState();
+    final initial = widget.initialSearchTerm?.trim();
+    if (initial == null || initial.isEmpty) return;
+    controller.text = initial;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      searchUsers(initial);
+    });
+  }
 
   @override
   Widget build(BuildContext context) => NewPrivateChatView(this);
