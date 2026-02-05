@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-05: Create story rooms via displayname prefix - Simon
+
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -108,6 +115,24 @@ class NewGroupController extends State<NewGroup> {
     context.pop<String>(spaceId);
   }
 
+  Future<void> _createStory() async {
+    if (!mounted) return;
+    final storyId = await Matrix.of(context).client.createRoom(
+      preset: sdk.CreateRoomPreset.privateChat,
+      name:
+          'story:${nameController.text.isNotEmpty ? nameController.text.trim() : 'My Story'}',
+      initialState: [
+        if (avatar != null)
+          sdk.StateEvent(
+            type: sdk.EventTypes.RoomAvatar,
+            content: {'url': avatarUrl.toString()},
+          ),
+      ],
+    );
+    if (!mounted) return;
+    context.go('/rooms/story/$storyId');
+  }
+
   void submitAction([dynamic _]) async {
     final client = Matrix.of(context).client;
 
@@ -133,6 +158,8 @@ class NewGroupController extends State<NewGroup> {
           await _createGroup();
         case CreateGroupType.space:
           await _createSpace();
+        case CreateGroupType.story:
+          await _createStory();
       }
     } catch (e, s) {
       sdk.Logs().d('Unable to create group', e, s);
@@ -147,4 +174,4 @@ class NewGroupController extends State<NewGroup> {
   Widget build(BuildContext context) => NewGroupView(this);
 }
 
-enum CreateGroupType { group, space }
+enum CreateGroupType { group, space, story }

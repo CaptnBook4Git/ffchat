@@ -1,3 +1,9 @@
+## Unreleased
+
+### Changed
+
+- [FORK] Stories rooms via story: prefix (Issue #1)
+
 ## v2.4.0
 FluffyChat 2.4.0 adds a new improved GUI for managing stickers with tutorials how to
 easily add your own sticker packs.

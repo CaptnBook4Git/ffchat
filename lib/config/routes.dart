@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 Krille Fear
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-05: Add story viewer route - Simon
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -33,6 +40,7 @@ import 'package:fluffychat/pages/settings_password/settings_password.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/pages/sign_in/sign_in_page.dart';
+import 'package:fluffychat/pages/stories/story_viewer.dart';
 import 'package:fluffychat/widgets/config_viewer.dart';
 import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
@@ -148,6 +156,15 @@ abstract class AppRoutes {
                   ),
           ),
           routes: [
+            GoRoute(
+              path: 'story/:roomid',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                state,
+                StoryViewer(roomId: state.pathParameters['roomid']!),
+              ),
+              redirect: loggedOutRedirect,
+            ),
             GoRoute(
               path: 'archive',
               pageBuilder: (context, state) =>

@@ -28,7 +28,9 @@ class NewGroupView extends StatelessWidget {
         title: Text(
           controller.createGroupType == CreateGroupType.space
               ? L10n.of(context).newSpace
-              : L10n.of(context).createGroup,
+              : controller.createGroupType == CreateGroupType.story
+                  ? L10n.of(context).newStory
+                  : L10n.of(context).createGroup,
         ),
       ),
       body: MaxWidthBody(
@@ -48,6 +50,10 @@ class NewGroupView extends StatelessWidget {
                   ButtonSegment(
                     value: CreateGroupType.space,
                     label: Text(L10n.of(context).space),
+                  ),
+                  ButtonSegment(
+                    value: CreateGroupType.story,
+                    label: Text(L10n.of(context).story),
                   ),
                 ],
               ),
@@ -83,22 +89,25 @@ class NewGroupView extends StatelessWidget {
                   prefixIcon: const Icon(Icons.people_outlined),
                   labelText: controller.createGroupType == CreateGroupType.space
                       ? L10n.of(context).spaceName
-                      : L10n.of(context).groupName,
+                      : controller.createGroupType == CreateGroupType.story
+                          ? L10n.of(context).storyName
+                          : L10n.of(context).groupName,
                 ),
               ),
             ),
             const SizedBox(height: 16),
-            SwitchListTile.adaptive(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 32),
-              secondary: const Icon(Icons.public_outlined),
-              title: Text(
-                controller.createGroupType == CreateGroupType.space
-                    ? L10n.of(context).spaceIsPublic
-                    : L10n.of(context).groupIsPublic,
+            if (controller.createGroupType != CreateGroupType.story)
+              SwitchListTile.adaptive(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 32),
+                secondary: const Icon(Icons.public_outlined),
+                title: Text(
+                  controller.createGroupType == CreateGroupType.space
+                      ? L10n.of(context).spaceIsPublic
+                      : L10n.of(context).groupIsPublic,
+                ),
+                value: controller.publicGroup,
+                onChanged: controller.loading ? null : controller.setPublicGroup,
               ),
-              value: controller.publicGroup,
-              onChanged: controller.loading ? null : controller.setPublicGroup,
-            ),
             AnimatedSize(
               duration: FluffyThemes.animationDuration,
               curve: FluffyThemes.animationCurve,
@@ -119,7 +128,8 @@ class NewGroupView extends StatelessWidget {
             AnimatedSize(
               duration: FluffyThemes.animationDuration,
               curve: FluffyThemes.animationCurve,
-              child: controller.createGroupType == CreateGroupType.space
+              child: controller.createGroupType == CreateGroupType.space ||
+                      controller.createGroupType == CreateGroupType.story
                   ? const SizedBox.shrink()
                   : SwitchListTile.adaptive(
                       contentPadding: const EdgeInsets.symmetric(
@@ -166,7 +176,9 @@ class NewGroupView extends StatelessWidget {
                       : Text(
                           controller.createGroupType == CreateGroupType.space
                               ? L10n.of(context).createNewSpace
-                              : L10n.of(context).createGroupAndInviteUsers,
+                              : controller.createGroupType == CreateGroupType.story
+                                  ? L10n.of(context).createNewStory
+                                  : L10n.of(context).createGroupAndInviteUsers,
                         ),
                 ),
               ),
