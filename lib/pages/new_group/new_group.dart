@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-05: Create story rooms via displayname prefix - Simon
+
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -10,7 +17,6 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
 import 'package:fluffychat/utils/file_selector.dart';
-import 'package:fluffychat/utils/story_room_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class NewGroup extends StatefulWidget {
@@ -113,10 +119,8 @@ class NewGroupController extends State<NewGroup> {
     if (!mounted) return;
     final storyId = await Matrix.of(context).client.createRoom(
       preset: sdk.CreateRoomPreset.privateChat,
-      creationContent: {'type': CustomRoomTypes.story},
-      name: nameController.text.isNotEmpty
-          ? nameController.text.trim()
-          : 'My Story',
+      name:
+          'story:${nameController.text.isNotEmpty ? nameController.text.trim() : 'My Story'}',
       initialState: [
         if (avatar != null)
           sdk.StateEvent(
@@ -126,7 +130,7 @@ class NewGroupController extends State<NewGroup> {
       ],
     );
     if (!mounted) return;
-    context.go('/rooms/$storyId');
+    context.go('/rooms/story/$storyId');
   }
 
   void submitAction([dynamic _]) async {

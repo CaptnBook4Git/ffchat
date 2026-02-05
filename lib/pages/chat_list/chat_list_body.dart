@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2022-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-05: Add stories section to chat list - Simon
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +18,7 @@ import 'package:fluffychat/pages/chat_list/dummy_chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
 import 'package:fluffychat/pages/chat_list/status_msg_list.dart';
+import 'package:fluffychat/pages/stories/stories_bar.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -65,6 +73,7 @@ class ChatListViewBody extends StatelessWidget {
           .rateLimit(const Duration(seconds: 1)),
       builder: (context, _) {
         final rooms = controller.filteredRooms;
+        final stories = controller.storyRooms;
 
         return SafeArea(
           child: CustomScrollView(
@@ -128,6 +137,8 @@ class ChatListViewBody extends StatelessWidget {
                         onStatusEdit: controller.setStatus,
                       ),
                     ),
+                  if (!controller.isSearchMode && stories.isNotEmpty)
+                    StoriesBar(rooms: stories, onTap: controller.onChatTap),
                   if (client.rooms.isNotEmpty && !controller.isSearchMode)
                     SizedBox(
                       height: 64,

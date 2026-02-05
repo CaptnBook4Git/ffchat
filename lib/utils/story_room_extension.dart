@@ -1,27 +1,35 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-05: Detect story rooms by displayname prefix - Simon
+
 import 'package:matrix/matrix.dart';
 
-/// Custom room types used in FluffyChat beyond the standard Matrix types.
-abstract class CustomRoomTypes {
-  /// Room type for story rooms - ephemeral content shared with contacts.
-  static const String story = 'family.stories';
-}
+/// Stories are rooms whose display name starts with `story:`.
+///
+/// Detection rules:
+/// - Leading whitespace is ignored.
+/// - Prefix check is case-insensitive.
+const String _storyPrefix = 'story:';
 
-/// Extension on [Room] to provide story-related functionality.
 extension StoryRoomExtension on Room {
-  /// Whether this room is a story room.
-  ///
-  /// Story rooms use the custom room type `family.stories` set during creation.
-  /// This type is immutable and stored in the `m.room.create` state event.
-  bool get isStory =>
-      getState(EventTypes.RoomCreate)?.content.tryGet<String>('type') ==
-      CustomRoomTypes.story;
+  /// Whether this room should be treated as a story room.
+  bool get isStory {
+    final displayName = getLocalizedDisplayname();
+    if (displayName.isEmpty) return false;
+    final normalized = displayName.trimLeft();
+    return normalized.toLowerCase().startsWith(_storyPrefix);
+  }
 
-  /// Gets the custom room type if set, or null for standard rooms.
+  /// Returns the display name without the `story:` prefix.
   ///
-  /// Standard Matrix room types include:
-  /// - `m.space` for spaces
-  /// - Custom types like `family.stories` for stories
-  /// - null for regular rooms/DMs
-  String? get customRoomType =>
-      getState(EventTypes.RoomCreate)?.content.tryGet<String>('type');
+  /// If the room is not a story room, returns the full display name.
+  String get storyDisplayName {
+    final displayName = getLocalizedDisplayname();
+    if (displayName.isEmpty) return displayName;
+    final normalized = displayName.trimLeft();
+    if (!normalized.toLowerCase().startsWith(_storyPrefix)) return displayName;
+    return normalized.substring(_storyPrefix.length).trimLeft();
+  }
 }

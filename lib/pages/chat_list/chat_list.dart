@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-05: Route and filter story rooms by displayname prefix - Simon
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -136,21 +143,26 @@ class ChatListController extends State<ChatList>
       return;
     }
 
+    if (room.isStory) {
+      context.go('/rooms/story/${room.id}');
+      return;
+    }
+
     context.go('/rooms/${room.id}');
   }
 
   bool Function(Room) getRoomFilterByActiveFilter(ActiveFilter activeFilter) {
     switch (activeFilter) {
       case ActiveFilter.allChats:
-        return (room) => true;
+        return (room) => !room.isStory;
       case ActiveFilter.messages:
-        return (room) => !room.isSpace && room.isDirectChat;
+        return (room) => !room.isStory && !room.isSpace && room.isDirectChat;
       case ActiveFilter.groups:
-        return (room) => !room.isSpace && !room.isDirectChat;
+        return (room) => !room.isStory && !room.isSpace && !room.isDirectChat;
       case ActiveFilter.unread:
-        return (room) => room.isUnreadOrInvited;
+        return (room) => !room.isStory && room.isUnreadOrInvited;
       case ActiveFilter.spaces:
-        return (room) => room.isSpace;
+        return (room) => !room.isStory && room.isSpace;
       case ActiveFilter.stories:
         return (room) => room.isStory;
     }
@@ -159,6 +171,16 @@ class ChatListController extends State<ChatList>
   List<Room> get filteredRooms => Matrix.of(
     context,
   ).client.rooms.where(getRoomFilterByActiveFilter(activeFilter)).toList();
+
+  List<Room> get storyRooms {
+    final rooms = Matrix.of(
+      context,
+    ).client.rooms.where((room) => room.isStory).toList();
+    rooms.sort(
+      (a, b) => b.latestEventReceivedTime.compareTo(a.latestEventReceivedTime),
+    );
+    return rooms;
+  }
 
   bool isSearchMode = false;
   Future<QueryPublicRoomsResponse>? publicRoomsResponse;
