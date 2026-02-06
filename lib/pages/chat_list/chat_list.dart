@@ -4,6 +4,7 @@
 //
 // MODIFICATIONS:
 // - 2026-02-05: Route and filter story rooms by displayname prefix - Simon
+// - 2026-02-06: Pass story room queue into viewer for auto-advance (Issue #6) - Simon
 
 import 'dart:async';
 
@@ -144,7 +145,10 @@ class ChatListController extends State<ChatList>
     }
 
     if (room.isStory) {
-      context.go('/rooms/story/${room.id}');
+      context.go(
+        '/rooms/story/${room.id}',
+        extra: storyRooms.map((r) => r.id).toList(),
+      );
       return;
     }
 
