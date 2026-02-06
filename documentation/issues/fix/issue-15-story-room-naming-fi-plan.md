@@ -4,12 +4,12 @@
 Story rooms werden "story:Story" statt "story:[User Name]" genannt. Dies liegt daran, dass in `stories_bar.dart` die lokalisierte Zeichenfolge "Story" als `nameFallback` übergeben wird, anstatt des Profilnamens des Benutzers.
 
 ## Solution
-In `lib/pages/stories/stories_bar.dart` wird die Logik so geändert, dass der Display Name des Benutzers mit `client.fetchOwnProfile()` abgerufen wird. Dieser Name wird dann als `nameFallback` an `getOrCreateOwnStoryRoom` übergeben. Wenn kein Name vorhanden ist, wird `null` übergeben, was in `own_story_config.dart` zu einem Fallback auf "My Story" führt.
+In `lib/pages/stories/stories_bar.dart` wird die Logik so geändert, dass der `localpart` der `userID` des Benutzers abgerufen wird. Dieser technische Name wird dann als `nameFallback` an `getOrCreateOwnStoryRoom` übergeben. Wenn kein Name vorhanden ist, wird `null` übergeben, was in `own_story_config.dart` zu einem Fallback auf "My Story" führt. Dies entspricht dem Wunsch des Benutzers, seinen "Usernamen" statt seines Anzeigenamens zu verwenden.
 
 ## Changes
 1. **lib/pages/stories/stories_bar.dart**:
-   - Die `_addToOwnStory` Funktion anpassen, um den User-Namen abzurufen.
-   - `nameFallback` mit dem Display Name aktualisieren.
+   - Die `_addToOwnStory` Funktion anpassen, um den `localpart` der `userID` abzurufen.
+   - `nameFallback` mit dem `localpart` aktualisieren.
 
 ## AGPL Compliance Checklist
 | File | SPDX | Original Copyright | Fork Copyright | Modifications |

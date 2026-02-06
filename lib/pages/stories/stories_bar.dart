@@ -5,6 +5,7 @@
 // - 2026-02-05: Add horizontal stories bar widget - Simon
 // - 2026-02-05: Add "add to story" action - Simon
 // - 2026-02-06: Fix story room naming bug (Issue #15) - Simon
+// - 2026-02-06: Update story room naming to use localpart (Issue #15) - Simon
 
 import 'package:flutter/material.dart';
 
@@ -47,14 +48,9 @@ class _StoriesBarState extends State<StoriesBar> {
         context: context,
         future: () async {
           String? nameFallback;
-          try {
-            final ownProfile = await client.fetchOwnProfile();
-            final displayName = ownProfile.displayName?.trim();
-            if (displayName != null && displayName.isNotEmpty) {
-              nameFallback = displayName;
-            }
-          } catch (_) {
-            // If profile can't be fetched (e.g. network issues), fall back to SDK default.
+          final localpart = client.userID?.localpart;
+          if (localpart != null && localpart.isNotEmpty) {
+            nameFallback = localpart;
           }
           return client.getOrCreateOwnStoryRoom(nameFallback: nameFallback);
         },
