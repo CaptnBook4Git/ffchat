@@ -4,6 +4,8 @@
 // MODIFICATIONS:
 // - 2026-02-05: Add horizontal stories bar widget - Simon
 // - 2026-02-05: Add "add to story" action - Simon
+// - 2026-02-06: Fix story room naming bug (Issue #15) - Simon
+// - 2026-02-06: Update story room naming to use localpart (Issue #15) - Simon
 
 import 'package:flutter/material.dart';
 
@@ -40,12 +42,18 @@ class _StoriesBarState extends State<StoriesBar> {
     if (_adding) return;
     setState(() => _adding = true);
     try {
-      final l10n = L10n.of(context);
       final client = Matrix.of(context).client;
 
       final roomResult = await showFutureLoadingDialog<Room>(
         context: context,
-        future: () => client.getOrCreateOwnStoryRoom(nameFallback: l10n.story),
+        future: () async {
+          String? nameFallback;
+          final localpart = client.userID?.localpart;
+          if (localpart != null && localpart.isNotEmpty) {
+            nameFallback = localpart;
+          }
+          return client.getOrCreateOwnStoryRoom(nameFallback: nameFallback);
+        },
       );
       final storyRoom = roomResult.result;
       if (!context.mounted || roomResult.error != null || storyRoom == null) {
