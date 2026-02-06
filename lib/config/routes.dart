@@ -5,6 +5,7 @@
 // MODIFICATIONS:
 // - 2026-02-05: Add story viewer route - Simon
 // - 2026-02-06: Wire contacts import route - Simon
+// - 2026-02-06: Pass story room queue for auto-advance transitions (Issue #6) - Simon
 
 import 'dart:async';
 
@@ -163,7 +164,12 @@ abstract class AppRoutes {
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                StoryViewer(roomId: state.pathParameters['roomid']!),
+                StoryViewer(
+                  roomId: state.pathParameters['roomid']!,
+                  storyRoomIds: state.extra is List<String>
+                      ? state.extra as List<String>
+                      : null,
+                ),
               ),
               redirect: loggedOutRedirect,
             ),
