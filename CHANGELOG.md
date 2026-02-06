@@ -3,6 +3,7 @@
 ### Changed
 
 - [FORK] Rebranding to FF Chat (Issue #18)
+- [FORK] Set up and document Android build and testing process (Issue #11)
 - [FORK] Update story room naming to use localpart (Issue #15)
 - [FORK] Implement story viewer with autoplay, gestures and auto-advance (Issue #6)
 - [FORK] Update changelogUrl to fork's GitHub CHANGELOG.md (Issue #12)

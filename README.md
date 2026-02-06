@@ -54,7 +54,7 @@ Please visit the website for installation instructions:
 
 # How to build
 
-1. To build FluffyChat you need [Flutter](https://flutter.dev) and [Rust](https://www.rust-lang.org/tools/install)
+1. To build FF Chat you need [Flutter](https://flutter.dev) and [Rust](https://www.rust-lang.org/tools/install)
 
 2. Clone the repo:
 ```
@@ -70,7 +70,9 @@ cd fluffychat
 
 ### Android
 
-* Build with: `flutter build apk`
+For detailed instructions on how to build and test FF Chat for Android, please refer to the [Android Build & Test Guide](documentation/guides/android-build.md).
+
+Quick build: `flutter build apk` (requires Rust and Java 17)
 
 ### iOS / iPadOS
 
