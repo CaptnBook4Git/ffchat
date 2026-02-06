@@ -1,3 +1,11 @@
+<!--
+SPDX-License-Identifier: AGPL-3.0-or-later
+Copyright (c) 2019-2026 FluffyChat Contributors
+Copyright (c) 2026 Simon
+
+MODIFICATIONS:
+- 2026-02-06: Rebranding to FF Chat - Simon
+-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="auto">
@@ -26,7 +34,7 @@
     <uses-sdk
             tools:overrideLibrary="io.wazo.callkeep, net.touchcapture.qr.flutterqr, com.cloudwebrtc.webrtc, org.webrtc, com.it_nomads.fluttersecurestorage, com.pichillilorenzo.flutter_inappwebview, com.example.video_compress, com.otaliastudios.transcoder, com.otaliastudios.opengl, com.kineapps.flutter_file_dialog, com.llfbandit.record, com.pravera.flutter_foreground_task"/>
     <application
-        android:label="FluffyChat"
+        android:label="FF Chat"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true"
         android:allowBackup="false"

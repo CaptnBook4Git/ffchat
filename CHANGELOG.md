@@ -2,6 +2,7 @@
 
 ### Changed
 
+- [FORK] Rebranding to FF Chat (Issue #18)
 - [FORK] Implement story viewer with autoplay, gestures and auto-advance (Issue #6)
 - [FORK] Update changelogUrl to fork's GitHub CHANGELOG.md (Issue #12)
 - [FORK] Add contacts import and identity matching (Issue #5)

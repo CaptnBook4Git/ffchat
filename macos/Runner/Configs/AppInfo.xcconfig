@@ -3,12 +3,19 @@
 // This may be replaced with something auto-generated from metadata (e.g., pubspec.yaml) in the
 // future. If not, the values below would default to using the project name when this becomes a
 // 'flutter create' template.
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2023 FluffyChat authors. All rights reserved.
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-06: Rebranding to FF Chat - Simon
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = FluffyChat
+PRODUCT_NAME = FF Chat
 
 // The application's bundle identifier
 PRODUCT_BUNDLE_IDENTIFIER = im.fluffychat.fluffychat
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 FluffyChat authors. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2023 FluffyChat authors. Copyright © 2026 Simon. All rights reserved.

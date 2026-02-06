@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2020-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-06: Rebranding to FF Chat - Simon
+
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -53,6 +60,16 @@ abstract class PlatformInfos {
       context: context,
       children: [
         Text(L10n.of(context).versionWithNumber(version)),
+        const SizedBox(height: 8),
+        Text(
+          '${AppSettings.applicationName.value} is a community fork of FluffyChat.',
+        ),
+        TextButton.icon(
+          onPressed: () =>
+              launchUrlString('https://github.com/krille-chan/fluffychat'),
+          icon: const Icon(Icons.open_in_new_outlined),
+          label: const Text('Upstream project: FluffyChat'),
+        ),
         TextButton.icon(
           onPressed: () => launchUrlString(AppConfig.sourceCodeUrl),
           icon: const Icon(Icons.source_outlined),
