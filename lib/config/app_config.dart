@@ -4,6 +4,7 @@
 //
 // MODIFICATIONS:
 // - 2026-02-06: Update changelogUrl to fork's GitHub CHANGELOG.md - Simon
+// - 2026-02-06: Rebranding to FF Chat - Simon
 
 import 'dart:ui';
 
@@ -27,7 +28,7 @@ abstract class AppConfig {
   static const double borderRadius = 18.0;
   static const double columnWidth = 360.0;
 
-  static const String website = 'https://fluffy.chat';
+  static const String website = 'https://github.com/CaptnBook4Git/ffchat';
   static const String enablePushTutorial =
       'https://fluffy.chat/faq/#push_without_google_services';
   static const String encryptionTutorial =
@@ -39,10 +40,9 @@ abstract class AppConfig {
   static const String appId = 'im.fluffychat.FluffyChat';
   static const String appOpenUrlScheme = 'im.fluffychat';
 
-  static const String sourceCodeUrl =
-      'https://github.com/krille-chan/fluffychat';
+  static const String sourceCodeUrl = 'https://github.com/CaptnBook4Git/ffchat';
   static const String supportUrl =
-      'https://github.com/krille-chan/fluffychat/issues';
+      'https://github.com/CaptnBook4Git/ffchat/issues';
   static const String changelogUrl =
       'https://github.com/CaptnBook4Git/ffchat/blob/main/CHANGELOG.md';
   static const String donationUrl = 'https://ko-fi.com/krille';
