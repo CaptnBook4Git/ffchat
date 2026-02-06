@@ -5,4 +5,4 @@ output-class: L10n
 preferred-supported-locales: ["en"]
 use-deferred-loading: true
 nullable-getter: false
-header-file: lib/l10n/l10n_header.txt
+header-file: l10n_header.txt

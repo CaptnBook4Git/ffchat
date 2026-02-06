@@ -24,19 +24,14 @@
   },
   "importNow": "Import now",
   "@importNow": {},
-
   "importContacts": "Import contacts",
   "@importContacts": {},
-
   "featureNotAvailable": "This feature is not available on this platform.",
   "@featureNotAvailable": {},
-
   "noResultsFound": "No results found",
   "@noResultsFound": {},
-
   "lastSeenTime": "Last import",
   "@lastSeenTime": {},
-
   "importedContactsCount": "Imported contacts: {count}",
   "@importedContactsCount": {
     "placeholders": {
@@ -45,10 +40,8 @@
       }
     }
   },
-
   "importContactsMatchingTitle": "Match contacts with Matrix users",
   "@importContactsMatchingTitle": {},
-
   "importContactsMatchingSubtitle": "Optional. If enabled, FF Chat can hash phone numbers and email addresses and query your identity server to find Matrix users.",
   "@importContactsMatchingSubtitle": {},
   "importEmojis": "Import Emojis",
@@ -148,6 +141,16 @@
   "@commandHint_cuddle": {},
   "commandHint_hug": "Send a hug",
   "@commandHint_hug": {},
+  "commandHint_sendraw": "Send raw json",
+  "@commandHint_sendraw": {},
+  "commandHint_ignore": "Ignore the given matrix ID",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "Unignore the given matrix ID",
+  "@commandHint_unignore": {},
+  "commandHint_logout": "Logout your current device",
+  "@commandHint_logout": {},
+  "commandHint_logoutall": "Logout all active devices",
+  "@commandHint_logoutall": {},
   "googlyEyesContent": "{senderName} sends you googly eyes",
   "@googlyEyesContent": {
     "type": "String",
@@ -293,6 +296,12 @@
   "@story": {},
   "newStory": "New Story",
   "@newStory": {},
+  "storyOptions": "Story options",
+  "@storyOptions": {},
+  "viewStories": "View stories",
+  "@viewStories": {},
+  "manageStories": "Manage stories",
+  "@manageStories": {},
   "storyName": "Story name",
   "@storyName": {},
   "createNewStory": "Create Story",
@@ -2518,6 +2527,1007 @@
   "appIntroduction": "FF Chat lets you chat with your friends across different messengers. Learn more at https://matrix.org or just tap *Continue*.",
   "signUpGreeting": "FF Chat is decentralized! Select a server where you want to create your account and let's go!",
   "appIntro": "With FF Chat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up.",
-
-  "theProcessWasCanceled": "The process was canceled."
+  "theProcessWasCanceled": "The process was canceled.",
+  "switchToAccount": "Switch to account {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "nextAccount": "Next account",
+  "@nextAccount": {},
+  "previousAccount": "Previous account",
+  "@previousAccount": {},
+  "addWidget": "Add widget",
+  "@addWidget": {},
+  "widgetVideo": "Video",
+  "@widgetVideo": {},
+  "widgetEtherpad": "Text note",
+  "@widgetEtherpad": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "widgetCustom": "Custom",
+  "@widgetCustom": {},
+  "widgetName": "Name",
+  "@widgetName": {},
+  "widgetUrlError": "This is not a valid URL.",
+  "@widgetUrlError": {},
+  "widgetNameError": "Please provide a display name.",
+  "@widgetNameError": {},
+  "errorAddingWidget": "Error adding the widget.",
+  "@errorAddingWidget": {},
+  "youRejectedTheInvitation": "You rejected the invitation",
+  "@youRejectedTheInvitation": {},
+  "youJoinedTheChat": "You joined the chat",
+  "@youJoinedTheChat": {},
+  "youAcceptedTheInvitation": "👍 You accepted the invitation",
+  "@youAcceptedTheInvitation": {},
+  "youBannedUser": "You banned {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "youHaveWithdrawnTheInvitationFor": "You have withdrawn the invitation for {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "youInvitedToBy": "📩 You have been invited via link to:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {
+        "type": "String"
+      }
+    }
+  },
+  "youInvitedBy": "📩 You have been invited by {user}",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "invitedBy": "📩 Invited by {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "youInvitedUser": "📩 You invited {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "youKicked": "👞 You kicked {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "youKickedAndBanned": "🙅 You kicked and banned {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "youUnbannedUser": "You unbanned {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "hasKnocked": "🚪 {user} has knocked",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "usersMustKnock": "Users must knock",
+  "@usersMustKnock": {},
+  "noOneCanJoin": "No one can join",
+  "@noOneCanJoin": {},
+  "userWouldLikeToChangeTheChat": "{user} would like to join the chat.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "No public link has been created yet",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "Knock",
+  "@knock": {},
+  "users": "Users",
+  "@users": {},
+  "unlockOldMessages": "Unlock old messages",
+  "@unlockOldMessages": {},
+  "storeInSecureStorageDescription": "Store the recovery key in the secure storage of this device.",
+  "@storeInSecureStorageDescription": {},
+  "saveKeyManuallyDescription": "Save this key manually by triggering the system share dialog or clipboard.",
+  "@saveKeyManuallyDescription": {},
+  "storeInAndroidKeystore": "Store in Android KeyStore",
+  "@storeInAndroidKeystore": {},
+  "storeInAppleKeyChain": "Store in Apple KeyChain",
+  "@storeInAppleKeyChain": {},
+  "storeSecurlyOnThisDevice": "Store securely on this device",
+  "@storeSecurlyOnThisDevice": {},
+  "countFiles": "{count} files",
+  "@countFiles": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "user": "User",
+  "@user": {},
+  "custom": "Custom",
+  "@custom": {},
+  "foregroundServiceRunning": "This notification appears when the foreground service is running.",
+  "@foregroundServiceRunning": {},
+  "screenSharingTitle": "screen sharing",
+  "@screenSharingTitle": {},
+  "screenSharingDetail": "You are sharing your screen in FuffyChat",
+  "@screenSharingDetail": {},
+  "callingPermissions": "Calling permissions",
+  "@callingPermissions": {},
+  "callingAccount": "Calling account",
+  "@callingAccount": {},
+  "appearOnTop": "Appear on top",
+  "@appearOnTop": {},
+  "whyIsThisMessageEncrypted": "Why is this message unreadable?",
+  "@whyIsThisMessageEncrypted": {},
+  "noKeyForThisMessage": "This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings.",
+  "@noKeyForThisMessage": {},
+  "newGroup": "New group",
+  "@newGroup": {},
+  "newSpace": "New space",
+  "@newSpace": {},
+  "enterSpace": "Enter space",
+  "@enterSpace": {},
+  "enterRoom": "Enter room",
+  "@enterRoom": {},
+  "allSpaces": "All spaces",
+  "@allSpaces": {},
+  "numChats": "{number} chats",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "hideUnimportantStateEvents": "Hide unimportant state events",
+  "@hideUnimportantStateEvents": {},
+  "hidePresences": "Hide Status List?",
+  "@hidePresences": {},
+  "doNotShowAgain": "Do not show again",
+  "@doNotShowAgain": {},
+  "wasDirectChatDisplayName": "Empty chat (was {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "String",
+    "placeholders": {
+      "oldDisplayName": {
+        "type": "String"
+      }
+    }
+  },
+  "newSpaceDescription": "Spaces allows you to consolidate your chats and build private or public communities.",
+  "@newSpaceDescription": {},
+  "encryptThisChat": "Encrypt this chat",
+  "@encryptThisChat": {},
+  "disableEncryptionWarning": "For security reasons you can not disable encryption in a chat, where it has been enabled before.",
+  "@disableEncryptionWarning": {},
+  "sorryThatsNotPossible": "Sorry... that is not possible",
+  "@sorryThatsNotPossible": {},
+  "deviceKeys": "Device keys:",
+  "@deviceKeys": {},
+  "reopenChat": "Reopen chat",
+  "@reopenChat": {},
+  "noBackupWarning": "Warning! Without enabling chat backup, you will lose access to your encrypted messages. It is highly recommended to enable the chat backup first before logging out.",
+  "@noBackupWarning": {},
+  "noOtherDevicesFound": "No other devices found",
+  "@noOtherDevicesFound": {},
+  "fileIsTooBigForServer": "Unable to send! The server only supports attachments up to {max}.",
+  "@fileIsTooBigForServer": {
+    "type": "String",
+    "placeholders": {
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "fileHasBeenSavedAt": "File has been saved at {path}",
+  "@fileHasBeenSavedAt": {
+    "type": "String",
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "jumpToLastReadMessage": "Jump to last read message",
+  "@jumpToLastReadMessage": {},
+  "readUpToHere": "Read up to here",
+  "@readUpToHere": {},
+  "jump": "Jump",
+  "@jump": {},
+  "openLinkInBrowser": "Open link in browser",
+  "@openLinkInBrowser": {},
+  "reportErrorDescription": "😭 Oh no. Something went wrong. If you want, you can report this bug to the developers.",
+  "@reportErrorDescription": {},
+  "report": "report",
+  "@report": {},
+  "signInWithPassword": "Sign in with password",
+  "@signInWithPassword": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Please try again later or choose a different server.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "profileNotFound": "The user could not be found on the server. Maybe there is a connection problem or the user doesn't exist.",
+  "@profileNotFound": {},
+  "setTheme": "Set theme:",
+  "@setTheme": {},
+  "setColorTheme": "Set color theme:",
+  "@setColorTheme": {},
+  "invite": "Invite",
+  "@invite": {},
+  "inviteGroupChat": "📨 Group chat invite",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 Private chat invite",
+  "@invitePrivateChat": {},
+  "invalidInput": "Invalid input!",
+  "@invalidInput": {},
+  "wrongPinEntered": "Wrong pin entered! Try again in {seconds} seconds...",
+  "@wrongPinEntered": {
+    "type": "String",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "pleaseEnterANumber": "Please enter a number greater than 0",
+  "@pleaseEnterANumber": {},
+  "archiveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
+  "@archiveRoomDescription": {},
+  "roomUpgradeDescription": "The chat will then be recreated with the new room version. All participants will be notified that they need to switch to the new chat. You can find out more about room versions at https://spec.matrix.org/latest/rooms/",
+  "@roomUpgradeDescription": {},
+  "removeDevicesDescription": "You will be logged out of this device and will no longer be able to receive messages.",
+  "@removeDevicesDescription": {},
+  "banUserDescription": "The user will be banned from the chat and will not be able to enter the chat again until they are unbanned.",
+  "@banUserDescription": {},
+  "unbanUserDescription": "The user will be able to enter the chat again if they try.",
+  "@unbanUserDescription": {},
+  "kickUserDescription": "The user is kicked out of the chat but not banned. In public chats, the user can rejoin at any time.",
+  "@kickUserDescription": {},
+  "makeAdminDescription": "Once you make this user admin, you may not be able to undo this as they will then have the same permissions as you.",
+  "@makeAdminDescription": {},
+  "pushNotificationsNotAvailable": "Push notifications not available",
+  "@pushNotificationsNotAvailable": {},
+  "learnMore": "Learn more",
+  "@learnMore": {},
+  "yourGlobalUserIdIs": "Your global user-ID is: ",
+  "@yourGlobalUserIdIs": {},
+  "noUsersFoundWithQuery": "Unfortunately no user could be found with \"{query}\". Please check whether you made a typo.",
+  "@noUsersFoundWithQuery": {
+    "type": "String",
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "knocking": "Knocking",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Chat can be discovered via the search on {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "String",
+    "placeholders": {
+      "server": {
+        "type": "String"
+      }
+    }
+  },
+  "searchChatsRooms": "Search for #chats, @users...",
+  "@searchChatsRooms": {},
+  "nothingFound": "Nothing found...",
+  "@nothingFound": {},
+  "groupName": "Group name",
+  "@groupName": {},
+  "createGroupAndInviteUsers": "Create a group and invite users",
+  "@createGroupAndInviteUsers": {},
+  "groupCanBeFoundViaSearch": "Group can be found via search",
+  "@groupCanBeFoundViaSearch": {},
+  "wrongRecoveryKey": "Sorry... this does not seem to be the correct recovery key.",
+  "@wrongRecoveryKey": {},
+  "startConversation": "Start conversation",
+  "@startConversation": {},
+  "databaseMigrationTitle": "Database is optimized",
+  "@databaseMigrationTitle": {},
+  "databaseMigrationBody": "Please wait. This may take a moment.",
+  "@databaseMigrationBody": {},
+  "leaveEmptyToClearStatus": "Leave empty to clear your status.",
+  "@leaveEmptyToClearStatus": {},
+  "select": "Select",
+  "@select": {},
+  "searchForUsers": "Search for @users...",
+  "@searchForUsers": {},
+  "pleaseEnterYourCurrentPassword": "Please enter your current password",
+  "@pleaseEnterYourCurrentPassword": {},
+  "newPassword": "New password",
+  "@newPassword": {},
+  "pleaseChooseAStrongPassword": "Please choose a strong password",
+  "@pleaseChooseAStrongPassword": {},
+  "passwordsDoNotMatch": "Passwords do not match",
+  "@passwordsDoNotMatch": {},
+  "passwordIsWrong": "Your entered password is wrong",
+  "@passwordIsWrong": {},
+  "publicLink": "Public link",
+  "@publicLink": {},
+  "publicChatAddresses": "Public chat addresses",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Create new address",
+  "@createNewAddress": {},
+  "joinSpace": "Join space",
+  "@joinSpace": {},
+  "publicSpaces": "Public spaces",
+  "@publicSpaces": {},
+  "addChatOrSubSpace": "Add chat or sub space",
+  "@addChatOrSubSpace": {},
+  "subspace": "Subspace",
+  "@subspace": {},
+  "decline": "Decline",
+  "@decline": {},
+  "thisDevice": "This device:",
+  "@thisDevice": {},
+  "initAppError": "An error occured while init the app",
+  "@initAppError": {},
+  "userRole": "User role",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} is the minimum power level.",
+  "@minimumPowerLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "searchIn": "Search in chat \"{chat}\"...",
+  "@searchIn": {
+    "type": "String",
+    "placeholders": {
+      "chat": {
+        "type": "String"
+      }
+    }
+  },
+  "searchMore": "Search more...",
+  "@searchMore": {},
+  "gallery": "Gallery",
+  "@gallery": {},
+  "files": "Files",
+  "@files": {},
+  "databaseBuildErrorBody": "Unable to build the SQlite database. The app tries to use the legacy database for now. Please report this error to the developers at {url}. The error message is: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "String",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "sessionLostBody": "Your session is lost. Please report this error to the developers at {url}. The error message is: {error}",
+  "@sessionLostBody": {
+    "type": "String",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreSessionBody": "The app now tries to restore your session from the backup. Please report this error to the developers at {url}. The error message is: {error}",
+  "@restoreSessionBody": {
+    "type": "String",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "forwardMessageTo": "Forward message to {roomName}?",
+  "@forwardMessageTo": {
+    "type": "String",
+    "placeholders": {
+      "roomName": {
+        "type": "String"
+      }
+    }
+  },
+  "sendReadReceipts": "Send read receipts",
+  "@sendReadReceipts": {},
+  "sendTypingNotificationsDescription": "Other participants in a chat can see when you are typing a new message.",
+  "@sendTypingNotificationsDescription": {},
+  "sendReadReceiptsDescription": "Other participants in a chat can see when you have read a message.",
+  "@sendReadReceiptsDescription": {},
+  "formattedMessages": "Formatted messages",
+  "@formattedMessages": {},
+  "formattedMessagesDescription": "Display rich message content like bold text using markdown.",
+  "@formattedMessagesDescription": {},
+  "verifyOtherUser": "🔐 Verify other user",
+  "@verifyOtherUser": {},
+  "verifyOtherUserDescription": "If you verify another user, you can be sure that you know who you are really writing to. 💪\n\nWhen you start a verification, you and the other user will see a popup in the app. There you will then see a series of emojis or numbers that you have to compare with each other.\n\nThe best way to do this is to meet up or start a video call. 👭",
+  "@verifyOtherUserDescription": {},
+  "verifyOtherDevice": "🔐 Verify other device",
+  "@verifyOtherDevice": {},
+  "verifyOtherDeviceDescription": "When you verify another device, those devices can exchange keys, increasing your overall security. 💪 When you start a verification, a popup will appear in the app on both devices. There you will then see a series of emojis or numbers that you have to compare with each other. It's best to have both devices handy before you start the verification. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "acceptedKeyVerification": "{sender} accepted key verification",
+  "@acceptedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "canceledKeyVerification": "{sender} canceled key verification",
+  "@canceledKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "completedKeyVerification": "{sender} completed key verification",
+  "@completedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "isReadyForKeyVerification": "{sender} is ready for key verification",
+  "@isReadyForKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "requestedKeyVerification": "{sender} requested key verification",
+  "@requestedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "startedKeyVerification": "{sender} started key verification",
+  "@startedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "transparent": "Transparent",
+  "@transparent": {},
+  "incomingMessages": "Incoming messages",
+  "@incomingMessages": {},
+  "stickers": "Stickers",
+  "@stickers": {},
+  "discover": "Discover",
+  "@discover": {},
+  "unreadChatsInApp": "{appname}: {unread} unread chats",
+  "@unreadChatsInApp": {
+    "type": "String",
+    "placeholders": {
+      "appname": {
+        "type": "String"
+      },
+      "unread": {
+        "type": "String"
+      }
+    }
+  },
+  "noDatabaseEncryption": "Database encryption is not supported on this platform",
+  "@noDatabaseEncryption": {},
+  "thereAreCountUsersBlocked": "Right now there are {count} users blocked.",
+  "@thereAreCountUsersBlocked": {
+    "type": "String",
+    "count": {}
+  },
+  "restricted": "Restricted",
+  "@restricted": {},
+  "knockRestricted": "Knock restricted",
+  "@knockRestricted": {},
+  "goToSpace": "Go to space: {space}",
+  "@goToSpace": {
+    "type": "String",
+    "space": {}
+  },
+  "markAsUnread": "Mark as unread",
+  "@markAsUnread": {},
+  "userLevel": "{level} - User",
+  "@userLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "moderatorLevel": "{level} - Moderator",
+  "@moderatorLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "adminLevel": "{level} - Admin",
+  "@adminLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "changeGeneralChatSettings": "Change general chat settings",
+  "@changeGeneralChatSettings": {},
+  "inviteOtherUsers": "Invite other users to this chat",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "Change the chat permissions",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "Change the visibility of the chat history",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "Change the main public chat address",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "Send a @room notifications",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "Change the description of the chat",
+  "@changeTheDescriptionOfTheGroup": {},
+  "chatPermissionsDescription": "Define which power level is necessary for certain actions in this chat. The power levels 0, 50 and 100 are usually representing users, moderators and admins, but any gradation is possible.",
+  "@chatPermissionsDescription": {},
+  "updateInstalled": "🎉 Update {version} installed!",
+  "@updateInstalled": {
+    "type": "String",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "changelog": "Changelog",
+  "@changelog": {},
+  "sendCanceled": "Sending canceled",
+  "@sendCanceled": {},
+  "loginWithMatrixId": "Login with Matrix-ID",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Discover homeservers",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "What is a homeserver?",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://matrix.org.",
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "calculatingFileSize": "Calculating file size...",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "Prepare sending attachment...",
+  "@prepareSendingAttachment": {},
+  "sendingAttachment": "Sending attachment...",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "Generating video thumbnail...",
+  "@generatingVideoThumbnail": {},
+  "compressVideo": "Compressing video...",
+  "@compressVideo": {},
+  "sendingAttachmentCountOfCount": "Sending attachment {index} of {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "serverLimitReached": "Server limit reached! Waiting {seconds} seconds...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "oneOfYourDevicesIsNotVerified": "One of your devices is not verified",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Note: When you connect all your devices to the chat backup, they are automatically verified.",
+  "@noticeChatBackupDeviceVerification": {},
+  "continueText": "Continue",
+  "@continueText": {},
+  "welcomeText": "Hey Hey 👋 This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!",
+  "@welcomeText": {},
+  "blur": "Blur:",
+  "@blur": {},
+  "opacity": "Opacity:",
+  "@opacity": {},
+  "setWallpaper": "Set wallpaper",
+  "@setWallpaper": {},
+  "manageAccount": "Manage account",
+  "@manageAccount": {},
+  "noContactInformationProvided": "Server does not provide any valid contact information",
+  "@noContactInformationProvided": {},
+  "contactServerAdmin": "Contact server admin",
+  "@contactServerAdmin": {},
+  "contactServerSecurity": "Contact server security",
+  "@contactServerSecurity": {},
+  "supportPage": "Support page",
+  "@supportPage": {},
+  "serverInformation": "Server information:",
+  "@serverInformation": {},
+  "name": "Name",
+  "@name": {},
+  "version": "Version",
+  "@version": {},
+  "website": "Website",
+  "@website": {},
+  "compress": "Compress",
+  "@compress": {},
+  "boldText": "Bold text",
+  "@boldText": {},
+  "italicText": "Italic text",
+  "@italicText": {},
+  "strikeThrough": "Strikethrough",
+  "@strikeThrough": {},
+  "pleaseFillOut": "Please fill out",
+  "@pleaseFillOut": {},
+  "invalidUrl": "Invalid url",
+  "@invalidUrl": {},
+  "addLink": "Add link",
+  "@addLink": {},
+  "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation.",
+  "@unableToJoinChat": {},
+  "previous": "Previous",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "The other party is currently not logged in and therefore cannot receive messages!",
+  "@otherPartyNotLoggedIn": {},
+  "appWantsToUseForLogin": "Use '{server}' to log in",
+  "@appWantsToUseForLogin": {
+    "type": "String",
+    "placeholders": {
+      "server": {
+        "type": "String"
+      }
+    }
+  },
+  "appWantsToUseForLoginDescription": "You hereby allow the app and website to share information about you.",
+  "@appWantsToUseForLoginDescription": {},
+  "open": "Open",
+  "@open": {},
+  "waitingForServer": "Waiting for server...",
+  "@waitingForServer": {},
+  "newChatRequest": "📩 New chat request",
+  "@newChatRequest": {},
+  "contentNotificationSettings": "Content notification settings",
+  "@contentNotificationSettings": {},
+  "generalNotificationSettings": "General notification settings",
+  "@generalNotificationSettings": {},
+  "roomNotificationSettings": "Room notification settings",
+  "@roomNotificationSettings": {},
+  "userSpecificNotificationSettings": "User specific notification settings",
+  "@userSpecificNotificationSettings": {},
+  "otherNotificationSettings": "Other notification settings",
+  "@otherNotificationSettings": {},
+  "notificationRuleContainsUserName": "Contains User Name",
+  "@notificationRuleContainsUserName": {},
+  "notificationRuleContainsUserNameDescription": "Notifies the user when a message contains their username.",
+  "@notificationRuleContainsUserNameDescription": {},
+  "notificationRuleMaster": "Mute all notifications",
+  "@notificationRuleMaster": {},
+  "notificationRuleMasterDescription": "Overrides all other rules and disables all notifications.",
+  "@notificationRuleMasterDescription": {},
+  "notificationRuleSuppressNotices": "Suppress Automated Messages",
+  "@notificationRuleSuppressNotices": {},
+  "notificationRuleSuppressNoticesDescription": "Suppresses notifications from automated clients like bots.",
+  "@notificationRuleSuppressNoticesDescription": {},
+  "notificationRuleInviteForMe": "Invite for Me",
+  "@notificationRuleInviteForMe": {},
+  "notificationRuleInviteForMeDescription": "Notifies the user when they are invited to a room.",
+  "@notificationRuleInviteForMeDescription": {},
+  "notificationRuleMemberEvent": "Member Event",
+  "@notificationRuleMemberEvent": {},
+  "notificationRuleMemberEventDescription": "Suppresses notifications for membership events.",
+  "@notificationRuleMemberEventDescription": {},
+  "notificationRuleIsUserMention": "User Mention",
+  "@notificationRuleIsUserMention": {},
+  "notificationRuleIsUserMentionDescription": "Notifies the user when they are directly mentioned in a message.",
+  "@notificationRuleIsUserMentionDescription": {},
+  "notificationRuleContainsDisplayName": "Contains Display Name",
+  "@notificationRuleContainsDisplayName": {},
+  "notificationRuleContainsDisplayNameDescription": "Notifies the user when a message contains their display name.",
+  "@notificationRuleContainsDisplayNameDescription": {},
+  "notificationRuleIsRoomMention": "Room Mention",
+  "@notificationRuleIsRoomMention": {},
+  "notificationRuleIsRoomMentionDescription": "Notifies the user when there is a room mention.",
+  "@notificationRuleIsRoomMentionDescription": {},
+  "notificationRuleRoomnotif": "Room Notification",
+  "@notificationRuleRoomnotif": {},
+  "notificationRuleRoomnotifDescription": "Notifies the user when a message contains '@room'.",
+  "@notificationRuleRoomnotifDescription": {},
+  "notificationRuleTombstone": "Tombstone",
+  "@notificationRuleTombstone": {},
+  "notificationRuleTombstoneDescription": "Notifies the user about room deactivation messages.",
+  "@notificationRuleTombstoneDescription": {},
+  "notificationRuleReaction": "Reaction",
+  "@notificationRuleReaction": {},
+  "notificationRuleReactionDescription": "Suppresses notifications for reactions.",
+  "@notificationRuleReactionDescription": {},
+  "notificationRuleRoomServerAcl": "Room Server ACL",
+  "@notificationRuleRoomServerAcl": {},
+  "notificationRuleRoomServerAclDescription": "Suppresses notifications for room server access control lists (ACL).",
+  "@notificationRuleRoomServerAclDescription": {},
+  "notificationRuleSuppressEdits": "Suppress Edits",
+  "@notificationRuleSuppressEdits": {},
+  "notificationRuleSuppressEditsDescription": "Suppresses notifications for edited messages.",
+  "@notificationRuleSuppressEditsDescription": {},
+  "notificationRuleCall": "Call",
+  "@notificationRuleCall": {},
+  "notificationRuleCallDescription": "Notifies the user about calls.",
+  "@notificationRuleCallDescription": {},
+  "notificationRuleEncryptedRoomOneToOne": "Encrypted Room One-to-One",
+  "@notificationRuleEncryptedRoomOneToOne": {},
+  "notificationRuleEncryptedRoomOneToOneDescription": "Notifies the user about messages in encrypted one-to-one rooms.",
+  "@notificationRuleEncryptedRoomOneToOneDescription": {},
+  "notificationRuleRoomOneToOne": "Room One-to-One",
+  "@notificationRuleRoomOneToOne": {},
+  "notificationRuleRoomOneToOneDescription": "Notifies the user about messages in one-to-one rooms.",
+  "@notificationRuleRoomOneToOneDescription": {},
+  "notificationRuleMessage": "Message",
+  "@notificationRuleMessage": {},
+  "notificationRuleMessageDescription": "Notifies the user about general messages.",
+  "@notificationRuleMessageDescription": {},
+  "notificationRuleEncrypted": "Encrypted",
+  "@notificationRuleEncrypted": {},
+  "notificationRuleEncryptedDescription": "Notifies the user about messages in encrypted rooms.",
+  "@notificationRuleEncryptedDescription": {},
+  "notificationRuleJitsi": "Jitsi",
+  "@notificationRuleJitsi": {},
+  "notificationRuleJitsiDescription": "Notifies the user about Jitsi widget events.",
+  "@notificationRuleJitsiDescription": {},
+  "notificationRuleServerAcl": "Suppress Server ACL Events",
+  "@notificationRuleServerAcl": {},
+  "notificationRuleServerAclDescription": "Suppresses notifications for Server ACL events.",
+  "@notificationRuleServerAclDescription": {},
+  "unknownPushRule": "Unknown push rule '{rule}'",
+  "@unknownPushRule": {
+    "type": "String",
+    "placeholders": {
+      "rule": {
+        "type": "String"
+      }
+    }
+  },
+  "sentVoiceMessage": "🎙️ {duration} - Voice message from {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "deletePushRuleCanNotBeUndone": "If you delete this notification setting, this can not be undone.",
+  "@deletePushRuleCanNotBeUndone": {},
+  "more": "More",
+  "@more": {},
+  "shareKeysWith": "Share keys with...",
+  "@shareKeysWith": {},
+  "shareKeysWithDescription": "Which devices should be trusted so that they can read along your messages in encrypted chats?",
+  "@shareKeysWithDescription": {},
+  "allDevices": "All devices",
+  "@allDevices": {},
+  "crossVerifiedDevicesIfEnabled": "Cross verified devices if enabled",
+  "@crossVerifiedDevicesIfEnabled": {},
+  "crossVerifiedDevices": "Cross verified devices",
+  "@crossVerifiedDevices": {},
+  "verifiedDevicesOnly": "Verified devices only",
+  "@verifiedDevicesOnly": {},
+  "takeAPhoto": "Take a photo",
+  "@takeAPhoto": {},
+  "recordAVideo": "Record a video",
+  "@recordAVideo": {},
+  "optionalMessage": "(Optional) message...",
+  "@optionalMessage": {},
+  "notSupportedOnThisDevice": "Not supported on this device",
+  "@notSupportedOnThisDevice": {},
+  "enterNewChat": "Enter new chat",
+  "@enterNewChat": {},
+  "approve": "Approve",
+  "@approve": {},
+  "youHaveKnocked": "You have knocked",
+  "@youHaveKnocked": {},
+  "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you.",
+  "@pleaseWaitUntilInvited": {},
+  "displayNavigationRail": "Show navigation rail on mobile",
+  "@displayNavigationRail": {},
+  "customReaction": "Custom reaction",
+  "@customReaction": {},
+  "moreEvents": "More events",
+  "@moreEvents": {},
+  "declineInvitation": "Decline invitation",
+  "@declineInvitation": {},
+  "noMessagesYet": "No messages yet",
+  "longPressToRecordVoiceMessage": "Long press to record voice message.",
+  "pause": "Pause",
+  "resume": "Resume",
+  "newSubSpace": "New sub space",
+  "moveToDifferentSpace": "Move to different space",
+  "moveUp": "Move up",
+  "moveDown": "Move down",
+  "removeFromSpaceDescription": "The chat will be removed from the space but still appear in your chat list.",
+  "countChats": "{chats} chats",
+  "@countChats": {
+    "type": "String",
+    "placeholders": {
+      "chats": {
+        "type": "int"
+      }
+    }
+  },
+  "spaceMemberOf": "Space member of {spaces}",
+  "@spaceMemberOf": {
+    "type": "String",
+    "placeholders": {
+      "spaces": {
+        "type": "String"
+      }
+    }
+  },
+  "spaceMemberOfCanKnock": "Space member of {spaces} can knock",
+  "@spaceMemberOfCanKnock": {
+    "type": "String",
+    "placeholders": {
+      "spaces": {
+        "type": "String"
+      }
+    }
+  },
+  "donate": "Donate",
+  "startedAPoll": "{username} started a poll.",
+  "@startedAPoll": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "poll": "Poll",
+  "startPoll": "Start poll",
+  "endPoll": "End poll",
+  "answersVisible": "Answers visible",
+  "answersHidden": "Answers hidden",
+  "pollQuestion": "Poll question",
+  "answerOption": "Answer option",
+  "addAnswerOption": "Add answer option",
+  "allowMultipleAnswers": "Allow multiple answers",
+  "pollHasBeenEnded": "Poll has been ended",
+  "countVotes": "{count, plural, =1{One vote} other{{count} votes}}",
+  "@countVotes": {
+    "type": "int",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "answersWillBeVisibleWhenPollHasEnded": "Answers will be visible when poll has ended",
+  "replyInThread": "Reply in thread",
+  "countReplies": "{count, plural, =1{One reply} other{{count} replies}}",
+  "@countReplies": {
+    "type": "int",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "thread": "Thread",
+  "backToMainChat": "Back to main chat",
+  "saveChanges": "Save changes",
+  "createSticker": "Create sticker or emoji",
+  "useAsSticker": "Use as sticker",
+  "useAsEmoji": "Use as emoji",
+  "stickerPackNameAlreadyExists": "Sticker pack name already exists",
+  "newStickerPack": "New sticker pack",
+  "stickerPackName": "Sticker pack name",
+  "attribution": "Attribution",
+  "skipChatBackup": "Skip chat backup",
+  "skipChatBackupWarning": "Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device.",
+  "loadingMessages": "Loading messages",
+  "setupChatBackup": "Set up chat backup",
+  "noMoreResultsFound": "No more results found",
+  "chatSearchedUntil": "Chat searched until {time}",
+  "@chatSearchedUntil": {
+    "type": "String",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "federationBaseUrl": "Federation Base URL",
+  "@federationBaseUrl": {},
+  "clientWellKnownInformation": "Client-Well-Known Information:",
+  "@clientWellKnownInformation": {},
+  "baseUrl": "Base URL",
+  "@baseUrl": {},
+  "identityServer": "Identity Server:",
+  "@identityServer": {},
+  "versionWithNumber": "Version: {version}",
+  "@versionWithNumber": {
+    "type": "String",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "logs": "Logs",
+  "@logs": {},
+  "advancedConfigs": "Advanced Configs",
+  "@advancedConfigs": {},
+  "advancedConfigurations": "Advanced configurations",
+  "@advancedConfigurations": {},
+  "signIn": "Sign in",
+  "createNewAccount": "Create new account",
+  "signInGreeting": "You already have an account in Matrix? Welcome back! Select your homeserver and sign in."
 }
