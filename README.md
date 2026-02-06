@@ -1,9 +1,15 @@
 ![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/assets/banner_transparent.png?raw=true)
 
-[FluffyChat](https://fluffy.chat) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
+# FF Chat
 
-### Links:
+FF Chat is a fork of [FluffyChat](https://fluffy.chat), an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). FF Chat is part of the "Family and Friends" ecosystem.
 
+### Fork Information:
+- **Upstream:** [FluffyChat](https://github.com/krille-chan/fluffychat)
+- **Status:** Community-led fork for Family and Friends features.
+- **Source Code:** [CaptnBook4Git/ffchat](https://github.com/CaptnBook4Git/ffchat)
+
+### Original Links:
 - 🌐 [[Weblate] Translate FluffyChat into your language](https://hosted.weblate.org/projects/fluffychat/)
 - 🌍 [[m] Join the community](https://matrix.to/#/#fluffy-space:matrix.org)
 - 📰 [[Mastodon] Get updates on social media](https://troet.cafe/@krille)
