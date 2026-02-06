@@ -1,2 +1,9 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (c) 2019-2026 FluffyChat Contributors
+# Copyright (c) 2026 Simon
+#
+# MODIFICATIONS:
+# - 2026-02-07: Change package_name from chat.fluffy.fluffychat to chat.ffchat.app - Simon
+
 json_key_file("keys.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
-package_name("chat.fluffy.fluffychat") # e.g. com.krausefx.app
+package_name("chat.ffchat.app") # e.g. com.krausefx.app

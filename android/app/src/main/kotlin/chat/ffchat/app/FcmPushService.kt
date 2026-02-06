@@ -1,4 +1,11 @@
-/*package chat.fluffy.fluffychat
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2019-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-07: Change package from chat.fluffy.fluffychat to chat.ffchat.app - Simon
+
+/*package chat.ffchat.app
 
 import com.famedly.fcm_shared_isolate.FcmSharedIsolateService
 

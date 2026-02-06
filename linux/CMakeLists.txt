@@ -1,3 +1,10 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (c) 2019-2026 FluffyChat Contributors
+# Copyright (c) 2026 Simon
+#
+# MODIFICATIONS:
+# - 2026-02-07: Change APPLICATION_ID from chat.fluffy.fluffychat to chat.ffchat.app - Simon
+
 # Project-level configuration.
 cmake_minimum_required(VERSION 3.10)
 project(runner LANGUAGES CXX)
@@ -9,7 +16,7 @@ set(OPENSSL_USE_STATIC_LIBS OFF)
 set(BINARY_NAME "fluffychat")
 # The unique GTK application identifier for this application. See:
 # https://wiki.gnome.org/HowDoI/ChooseApplicationID
-set(APPLICATION_ID "chat.fluffy.fluffychat")
+set(APPLICATION_ID "chat.ffchat.app")
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.
