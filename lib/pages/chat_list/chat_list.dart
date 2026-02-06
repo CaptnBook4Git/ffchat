@@ -5,6 +5,7 @@
 // MODIFICATIONS:
 // - 2026-02-05: Route and filter story rooms by displayname prefix - Simon
 // - 2026-02-06: Pass story room queue into viewer for auto-advance (Issue #6) - Simon
+// - 2026-02-06: Add own story room choice dialog (Issue #21) - Simon
 // - 2026-02-06: Sort unseen stories first (Issue #27) - Simon
 
 import 'dart:async';
@@ -24,6 +25,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/own_story_config.dart';
 import 'package:fluffychat/utils/story_room_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/show_scaffold_dialog.dart';
@@ -49,6 +51,8 @@ enum PopupMenuAction {
 }
 
 enum ActiveFilter { allChats, messages, groups, unread, spaces, stories }
+
+enum _OwnStoryRoomTapAction { viewStories, manageStories }
 
 extension LocalizedActiveFilter on ActiveFilter {
   String toLocalizedString(BuildContext context) {
@@ -146,6 +150,38 @@ class ChatListController extends State<ChatList>
     }
 
     if (room.isStory) {
+      if (room.client.isOwnStoryRoom(room)) {
+        final action = await showModalActionPopup<_OwnStoryRoomTapAction>(
+          context: context,
+          title: L10n.of(context).storyOptions,
+          cancelLabel: L10n.of(context).cancel,
+          actions: [
+            AdaptiveModalAction(
+              value: _OwnStoryRoomTapAction.viewStories,
+              label: L10n.of(context).viewStories,
+            ),
+            AdaptiveModalAction(
+              value: _OwnStoryRoomTapAction.manageStories,
+              label: L10n.of(context).manageStories,
+            ),
+          ],
+        );
+        if (action == null) return;
+        if (!mounted) return;
+
+        switch (action) {
+          case _OwnStoryRoomTapAction.viewStories:
+            context.go(
+              '/rooms/story/${room.id}',
+              extra: storyRooms.map((r) => r.id).toList(),
+            );
+            return;
+          case _OwnStoryRoomTapAction.manageStories:
+            context.go('/rooms/${room.id}');
+            return;
+        }
+      }
+
       context.go(
         '/rooms/story/${room.id}',
         extra: storyRooms.map((r) => r.id).toList(),

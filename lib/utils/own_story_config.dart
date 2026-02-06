@@ -4,11 +4,21 @@
 // MODIFICATIONS:
 // - 2026-02-05: Add own story room account-data mapping - Simon
 // - 2026-02-05: Validate stored room_id before use - Simon
+// - 2026-02-06: Add isOwnStoryRoom helper - Simon
 
 import 'package:matrix/matrix.dart';
 
 extension OwnStoryConfigExtension on Client {
   static const String ownStoryAccountDataType = 'ffchat.story';
+
+  bool isOwnStoryRoom(Room room) {
+    final rawContent = accountData[ownStoryAccountDataType]?.content;
+    final roomId = (rawContent as Map?)?['room_id'];
+    if (roomId is! String) return false;
+    final trimmed = roomId.trim();
+    if (trimmed.isEmpty) return false;
+    return room.id == trimmed;
+  }
 
   Future<String?> getOwnStoryRoomId() async {
     await roomsLoading;
