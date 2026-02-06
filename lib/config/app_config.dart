@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-06: Update changelogUrl to fork's GitHub CHANGELOG.md - Simon
+
 import 'dart:ui';
 
 abstract class AppConfig {
@@ -36,7 +43,8 @@ abstract class AppConfig {
       'https://github.com/krille-chan/fluffychat';
   static const String supportUrl =
       'https://github.com/krille-chan/fluffychat/issues';
-  static const String changelogUrl = 'https://fluffy.chat/en/changelog/';
+  static const String changelogUrl =
+      'https://github.com/CaptnBook4Git/ffchat/blob/main/CHANGELOG.md';
   static const String donationUrl = 'https://ko-fi.com/krille';
 
   static const Set<String> defaultReactions = {'👍', '❤️', '😂', '😮', '😢'};
