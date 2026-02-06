@@ -5,6 +5,7 @@
 // MODIFICATIONS:
 // - 2026-02-05: Route and filter story rooms by displayname prefix - Simon
 // - 2026-02-06: Pass story room queue into viewer for auto-advance (Issue #6) - Simon
+// - 2026-02-06: Sort unseen stories first (Issue #27) - Simon
 
 import 'dart:async';
 
@@ -180,9 +181,12 @@ class ChatListController extends State<ChatList>
     final rooms = Matrix.of(
       context,
     ).client.rooms.where((room) => room.isStory).toList();
-    rooms.sort(
-      (a, b) => b.latestEventReceivedTime.compareTo(a.latestEventReceivedTime),
-    );
+    rooms.sort((a, b) {
+      final aUnseen = a.hasNewMessages ? 1 : 0;
+      final bUnseen = b.hasNewMessages ? 1 : 0;
+      if (aUnseen != bUnseen) return bUnseen - aUnseen;
+      return b.latestEventReceivedTime.compareTo(a.latestEventReceivedTime);
+    });
     return rooms;
   }
 
