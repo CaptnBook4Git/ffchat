@@ -6,6 +6,7 @@
 // - 2026-02-05: Add "add to story" action - Simon
 // - 2026-02-06: Fix story room naming bug (Issue #15) - Simon
 // - 2026-02-06: Update story room naming to use localpart (Issue #15) - Simon
+// - 2026-02-06: Add solid ring indicator for unseen stories (Issue #27) - Simon
 
 import 'package:flutter/material.dart';
 
@@ -119,15 +120,7 @@ class _StoriesBarState extends State<StoriesBar> {
                         child: Container(
                           padding: const EdgeInsets.all(3),
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                theme.colorScheme.primary,
-                                theme.colorScheme.primaryContainer,
-                                theme.colorScheme.secondary,
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
+                            color: theme.colorScheme.primary,
                             borderRadius: BorderRadius.circular(48),
                           ),
                           alignment: Alignment.center,
@@ -174,6 +167,7 @@ class _StoriesBarState extends State<StoriesBar> {
 
           final room = rooms[i - 1];
           final label = room.storyDisplayName;
+          final hasUnseenStory = room.hasNewMessages;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: SizedBox(
@@ -190,15 +184,9 @@ class _StoriesBarState extends State<StoriesBar> {
                       child: Container(
                         padding: const EdgeInsets.all(3),
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              theme.colorScheme.primary,
-                              theme.colorScheme.primaryContainer,
-                              theme.colorScheme.secondary,
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
+                          color: hasUnseenStory
+                              ? theme.colorScheme.primary
+                              : theme.colorScheme.surfaceContainerHighest,
                           borderRadius: BorderRadius.circular(48),
                         ),
                         alignment: Alignment.center,
