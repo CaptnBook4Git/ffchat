@@ -2,6 +2,7 @@
 
 ### Changed
 
+- [FORK] Update changelogUrl to fork's GitHub CHANGELOG.md (Issue #12)
 - [FORK] Add contacts import and identity matching (Issue #5)
 - [FORK] Stories rooms via story: prefix (Issue #1)
 - [FORK] Add "Add to story" flow with per-account story room mapping (Issue #3)
