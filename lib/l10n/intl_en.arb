@@ -1595,6 +1595,7 @@
   "@editBundlesForAccount": {},
   "addToBundle": "Add to bundle",
   "@addToBundle": {},
+
   "removeFromBundle": "Remove from this bundle",
   "@removeFromBundle": {},
   "bundleName": "Bundle name",
@@ -1679,6 +1680,8 @@
       }
     }
   },
+
+
   "pleaseChoose": "Please choose",
   "@pleaseChoose": {
     "type": "String",
@@ -4520,5 +4523,31 @@
         "type": "String"
       }
     }
-  }
+  },
+  "circles": "Circles",
+  "@circles": {},
+  "createCircle": "Create circle",
+  "@createCircle": {},
+  "circleName": "Circle name",
+  "@circleName": {},
+  "deleteCircle": "Delete circle",
+  "@deleteCircle": {},
+  "deleteCircleConfirmation": "Are you sure you want to delete this circle? This cannot be undone.",
+  "@deleteCircleConfirmation": {},
+  "renameCircle": "Rename circle",
+  "@renameCircle": {},
+  "addToCircle": "Add to circle",
+  "@addToCircle": {},
+  "removeFromCircle": "Remove from circle",
+  "@removeFromCircle": {},
+  "circle": "Circle",
+  "@circle": {},
+  "noCirclesYet": "No circles yet. Create one to organize your contacts.",
+  "@noCirclesYet": {},
+  "circleMembers": "{count} members",
+  "@circleMembers": { "placeholders": { "count": { "type": "int" } } },
+  "createNewCircle": "Create new circle",
+  "@createNewCircle": {},
+  "addMember": "Add member",
+  "@addMember": {}
 }

@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-07: Add AGPL header for fork compliance (Issue #4) - Simon
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
