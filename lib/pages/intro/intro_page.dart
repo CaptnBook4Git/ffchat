@@ -4,6 +4,7 @@
 //
 // MODIFICATIONS:
 // - 2026-02-07: Complete FluffyChat to FF Chat rebranding - Simon
+// - 2026-02-07: Adjust logo scaling - Simon
 
 import 'package:flutter/material.dart';
 
@@ -91,9 +92,15 @@ class IntroPage extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Hero(
                         tag: 'info-logo',
-                        child: Image.asset(
-                          'assets/logo_transparent.png',
-                          fit: BoxFit.fitWidth,
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            maxWidth: 200,
+                            maxHeight: 200,
+                          ),
+                          child: Image.asset(
+                            'assets/logo_transparent.png',
+                            filterQuality: FilterQuality.medium,
+                          ),
                         ),
                       ),
                     ),

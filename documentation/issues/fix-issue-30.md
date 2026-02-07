@@ -4,21 +4,22 @@
 
 ## Problem
 
-Many assets still show the old FluffyChat logo (Purple Cat) and "FluffyChat" text instead of the new FF Chat branding.
+Legacy FluffyChat logos were still present, and the new FF Chat logo was rendered much too large on several screens, especially on Android splash and login views.
 
 ## Solution
 
-Replaced XML vector paths in Android assets with FF Chat logo data and updated UI code to use modern assets. Added missing AGPL headers for compliance.
+Replaced all vector and binary assets. Applied size constraints in Flutter UI code and re-scaled Android splash PNGs to appropriate dimensions.
 
 ## Changes
 
-- Updated Android XML vectors (ic_launcher_foreground.xml, ic_launcher_monochrome.xml, notifications_icon.xml) with FF Chat logo paths.
-- Updated UI code (login_view.dart, intro_page.dart) to use FF Chat logo assets instead of old banners.
-- Added AGPL headers and updated CHANGELOG.md.
+- Updated Android XML vectors with FF Chat logo.
+- Fixed logo scaling in Login (max 128px) and Intro (max 200px) screens.
+- Re-generated and replaced Android splash PNGs with correctly scaled versions (80dp base).
+- Added/Updated AGPL headers and CHANGELOG.md.
 
 ## Verification
 
-Manual check of Android icons and UI views. Verified AGPL compliance.
+Verified visual proportions on Android emulator and checked AGPL compliance for all modified files.
 
 ---
 *Generated automatically for Issue #30*

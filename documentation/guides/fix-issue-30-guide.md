@@ -6,13 +6,20 @@
 
 ---
 
-# Developer Guide: Rebranding Assets
+# Developer Guide: Logo Scaling & Rebranding
 
-When updating branding in FF Chat:
-1. Use `assets/logo.svg` as the source of truth for the logo.
-2. For Android Adaptive Icons, update path data in `android/app/src/main/res/drawable/ic_launcher_foreground.xml` and related files.
-3. Ensure all modified files have the AGPL-3.0-or-later header.
-4. Update `CHANGELOG.md` with the `[FORK]` prefix.
+## Logo Dimensions
+- Login Screen: Max 128x128px (`ConstrainedBox`)
+- Intro Screen: Max 200x200px (`ConstrainedBox`)
+- Android Splash (80dp base):
+  - mdpi: 80px
+  - hdpi: 120px
+  - xhdpi: 160px
+  - xxhdpi: 240px
+  - xxxhdpi: 320px
+
+## Implementation
+Always use `ConstrainedBox` for logos in UI views to prevent them from filling the screen width. When generating splash assets, use 80dp as the reference size for the centered icon.
 
 ---
 

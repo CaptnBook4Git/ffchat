@@ -2,9 +2,9 @@
 
 > **Stand:** 7.2.2026
 
-# Rebranding Overview
+# Rebranding & Scaling Fix Overview
 
-Complete replacement of FluffyChat branding with FF Chat branding across Android assets and UI components. This includes icons, splash elements, and notification assets.
+This update completes the rebranding to FF Chat by replacing all legacy assets and fixing the disproportionate logo scaling on Android splash and UI screens.
 
 ---
 
