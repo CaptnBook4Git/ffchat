@@ -1,3 +1,11 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2019-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-07: Complete FluffyChat to FF Chat rebranding - Simon
+// - 2026-02-07: Adjust logo scaling - Simon
+
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -35,7 +43,18 @@ class LoginView extends StatelessWidget {
               children: <Widget>[
                 Hero(
                   tag: 'info-logo',
-                  child: Image.asset('assets/banner_transparent.png'),
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxWidth: 128,
+                        maxHeight: 128,
+                      ),
+                      child: Image.asset(
+                        'assets/logo_transparent.png',
+                        filterQuality: FilterQuality.medium,
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Padding(

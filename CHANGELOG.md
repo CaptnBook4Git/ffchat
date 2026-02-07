@@ -2,6 +2,7 @@
 
 ### Changed
 
+- [FORK] Complete rebranding to FF Chat with new icons and updated splash screens (Issue #30)
 - [FORK] Add choice dialog for own story room (Issue #21)
 - [FORK] Rebranding to FF Chat (Issue #18)
 - [FORK] Set up and document Android build and testing process (Issue #11)
