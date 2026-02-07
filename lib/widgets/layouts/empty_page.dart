@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2019-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-07: Complete FluffyChat to FF Chat rebranding - Simon
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
