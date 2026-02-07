@@ -1,9 +1,18 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-07: Add circle filter chips (Issue #4) - Simon
+// - 2026-02-07: Wire circle filter chips into invitation selection (Issue #4) - Simon
+
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
+import 'package:fluffychat/utils/circles_config.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -73,6 +82,38 @@ class InvitationSelectionView extends StatelessWidget {
                 ),
                 onChanged: controller.searchUserWithCoolDown,
               ),
+            ),
+            StreamBuilder<Object>(
+              stream: room.client.onSync.stream,
+              builder: (context, _) {
+                final circles = room.client.circles;
+                if (circles.isEmpty) return const SizedBox.shrink();
+                return SizedBox(
+                  height: 48,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    children: [
+                      FilterChip(
+                        selected: controller.selectedCircleId == null,
+                        onSelected: (_) => controller.selectCircle(null),
+                        label: Text(L10n.of(context).all),
+                      ),
+                      ...circles.map(
+                        (circle) => Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: FilterChip(
+                            selected: controller.selectedCircleId == circle.id,
+                            onSelected: (_) =>
+                                controller.selectCircle(circle.id),
+                            label: Text(circle.name),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
             StreamBuilder<Object>(
               stream: room.client.onRoomState.stream.where(

@@ -1,3 +1,11 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-07: Add Add-to-Circle action (Issue #4) - Simon
+// - 2026-02-07: Implement circle selection and creation popup (Issue #4) - Simon
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,8 +15,11 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/circles_config.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
 import '../../utils/url_launcher.dart';
@@ -188,6 +199,15 @@ class UserDialog extends StatelessWidget {
             bigButtons: true,
             borderRadius: AdaptiveDialogAction.centerRadius,
             onPressed: () {
+              Navigator.of(context).pop();
+              _showAddToCirclePopup(context, client, profile.userId);
+            },
+            child: Text(L10n.of(context).addToCircle),
+          ),
+          AdaptiveDialogAction(
+            bigButtons: true,
+            borderRadius: AdaptiveDialogAction.centerRadius,
+            onPressed: () {
               final router = GoRouter.of(context);
               Navigator.of(context).pop();
               router.go(
@@ -210,4 +230,67 @@ class UserDialog extends StatelessWidget {
       ],
     );
   }
+}
+
+Future<void> _showAddToCirclePopup(
+  BuildContext context,
+  Client client,
+  String userId,
+) async {
+  final l10n = L10n.of(context);
+  await client.accountDataLoading;
+
+  const createValue = '__create__';
+  final circles = client.circles;
+  final selection = await showModalActionPopup<String>(
+    context: context,
+    title: l10n.addToCircle,
+    cancelLabel: l10n.cancel,
+    actions: [
+      AdaptiveModalAction(
+        label: l10n.createNewCircle,
+        value: createValue,
+        icon: const Icon(Icons.add_circle_outline),
+        isDefaultAction: circles.isEmpty,
+      ),
+      ...circles.map(
+        (c) => AdaptiveModalAction(
+          label: c.name,
+          value: c.id,
+          icon: Icon(
+            c.members.contains(userId)
+                ? Icons.check_circle_outline
+                : Icons.group_work_outlined,
+          ),
+        ),
+      ),
+    ],
+  );
+
+  if (selection == null) return;
+
+  var targetCircleId = selection;
+  if (selection == createValue) {
+    final name = await showTextInputDialog(
+      context: context,
+      title: l10n.createCircle,
+      labelText: l10n.circleName,
+      okLabel: l10n.create,
+      cancelLabel: l10n.cancel,
+      validator: (input) => input.trim().isEmpty ? l10n.pleaseFillOut : null,
+    );
+    if (name == null) return;
+    final created = await showFutureLoadingDialog<Circle>(
+      context: context,
+      future: () => client.createCircle(name),
+    );
+    final circle = created.result;
+    if (circle == null) return;
+    targetCircleId = circle.id;
+  }
+
+  await showFutureLoadingDialog(
+    context: context,
+    future: () => client.addMemberToCircle(targetCircleId, userId),
+  );
 }

@@ -1,6 +1,7 @@
 ## Unreleased
 
 ### Changed
+- [FORK] Add Contact Circles with circle-based audience selection (Issue #4)
 
 - [FORK] Complete rebranding to FF Chat with new icons and updated splash screens (Issue #30)
 - [FORK] Add choice dialog for own story room (Issue #21)

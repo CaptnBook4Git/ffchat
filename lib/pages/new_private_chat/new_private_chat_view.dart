@@ -4,6 +4,7 @@
 //
 // MODIFICATIONS:
 // - 2026-02-06: Add entry point to contacts import (mobile) - Simon
+// - 2026-02-07: Add Circles entry point (Issue #4) - Simon
 
 import 'package:flutter/material.dart';
 
@@ -159,6 +160,16 @@ class NewPrivateChatView extends StatelessWidget {
                             ),
                             title: Text(L10n.of(context).createGroup),
                             onTap: () => context.go('/rooms/newgroup'),
+                          ),
+                          ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  theme.colorScheme.surfaceContainerHigh,
+                              foregroundColor: theme.colorScheme.onSurface,
+                              child: const Icon(Icons.group_work_outlined),
+                            ),
+                            title: Text(L10n.of(context).circles),
+                            onTap: () => context.go('/rooms/circles'),
                           ),
                           if (PlatformInfos.isMobile)
                             ListTile(

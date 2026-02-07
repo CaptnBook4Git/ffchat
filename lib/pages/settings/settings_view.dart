@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-07: Add Circles entry point (Issue #4) - Simon
+
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -228,6 +235,14 @@ class SettingsView extends StatelessWidget {
                         activeRoute.startsWith('/rooms/settings/security')
                         ? theme.colorScheme.surfaceContainerHigh
                         : null,
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.group_work_outlined),
+                    title: Text(L10n.of(context).circles),
+                    tileColor: activeRoute.startsWith('/rooms/circles')
+                        ? theme.colorScheme.surfaceContainerHigh
+                        : null,
+                    onTap: () => context.go('/rooms/circles'),
                   ),
                   Divider(color: theme.dividerColor),
                   ListTile(

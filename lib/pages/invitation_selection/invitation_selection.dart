@@ -1,3 +1,11 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-07: Add circle-based filtering state (Issue #4) - Simon
+// - 2026-02-07: Filter contacts by selected circle (Issue #4) - Simon
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -6,6 +14,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection_view.dart';
+import 'package:fluffychat/utils/circles_config.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -26,6 +35,13 @@ class InvitationSelectionController extends State<InvitationSelection> {
   List<Profile> foundProfiles = [];
   Timer? coolDown;
 
+  String? selectedCircleId;
+
+  void selectCircle(String? circleId) {
+    if (!mounted) return;
+    setState(() => selectedCircleId = circleId);
+  }
+
   String? get roomId => widget.roomId;
 
   Future<List<User>> getContacts(BuildContext context) async {
@@ -42,11 +58,23 @@ class InvitationSelectionController extends State<InvitationSelection> {
         .where((r) => r.isDirectChat)
         .map((r) => r.unsafeGetUserFromMemoryOrFallback(r.directChatMatrixID!))
         .toList();
+
+    final circleId = selectedCircleId;
+    if (circleId != null) {
+      final circle = client.circles
+          .where((c) => c.id == circleId)
+          .cast<Circle?>()
+          .firstOrNull;
+      if (circle != null) {
+        contacts.retainWhere((u) => circle.members.contains(u.id));
+      }
+    }
     contacts.sort(
       (a, b) => a.calcDisplayname().toLowerCase().compareTo(
         b.calcDisplayname().toLowerCase(),
       ),
     );
+
     return contacts;
   }
 
@@ -110,4 +138,8 @@ class InvitationSelectionController extends State<InvitationSelection> {
 
   @override
   Widget build(BuildContext context) => InvitationSelectionView(this);
+}
+
+extension on Iterable<Circle> {
+  Circle? get firstOrNull => isEmpty ? null : first;
 }
