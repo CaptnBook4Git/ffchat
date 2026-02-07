@@ -1596,6 +1596,91 @@
   "addToBundle": "Add to bundle",
   "@addToBundle": {},
 
+  "removeFromBundle": "Remove from this bundle",
+  "@removeFromBundle": {},
+  "bundleName": "Bundle name",
+  "@bundleName": {},
+  "enableMultiAccounts": "(BETA) Enable multi accounts on this device",
+  "@enableMultiAccounts": {},
+  "openInMaps": "Open in maps",
+  "@openInMaps": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "link": "Link",
+  "@link": {},
+  "serverRequiresEmail": "This server needs to validate your email address for registration.",
+  "@serverRequiresEmail": {},
+  "or": "Or",
+  "@or": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "participant": "Participant",
+  "@participant": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "passphrase or recovery key",
+  "@passphraseOrKey": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "password": "Password",
+  "@password": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Password forgotten",
+  "@passwordForgotten": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "Password has been changed",
+  "@passwordHasBeenChanged": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "hideMemberChangesInPublicChats": "Hide member changes in public chats",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "Do not show in the chat timeline if someone joins or leaves a public chat to improve readability.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "overview": "Overview",
+  "@overview": {},
+  "notifyMeFor": "Notify me for",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "Password recovery settings",
+  "@passwordRecoverySettings": {},
+  "passwordRecovery": "Password recovery",
+  "@passwordRecovery": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "people": "People",
+  "@people": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pickImage": "Pick an image",
+  "@pickImage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pin": "Pin",
+  "@pin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "play": "Play {fileName}",
+  "@play": {
+    "type": "String",
+    "placeholders": {
+      "fileName": {
+        "type": "String"
+      }
+    }
+  },
+
 
   "pleaseChoose": "Please choose",
   "@pleaseChoose": {
