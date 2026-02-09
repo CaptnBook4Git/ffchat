@@ -511,34 +511,34 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_local_notifications
-      sha256: "19ffb0a8bb7407875555e5e98d7343a633bb73707bae6c6a5f37c90014077875"
+      sha256: "76cd20bcfa72fabe50ea27eeaf165527f446f55d3033021462084b87805b4cac"
       url: "https://pub.dev"
     source: hosted
-    version: "19.5.0"
+    version: "20.0.0"
   flutter_local_notifications_linux:
     dependency: transitive
     description:
       name: flutter_local_notifications_linux
-      sha256: e3c277b2daab8e36ac5a6820536668d07e83851aeeb79c446e525a70710770a5
+      sha256: dce0116868cedd2cdf768af0365fc37ff1cbef7c02c4f51d0587482e625868d0
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.0"
+    version: "7.0.0"
   flutter_local_notifications_platform_interface:
     dependency: transitive
     description:
       name: flutter_local_notifications_platform_interface
-      sha256: "277d25d960c15674ce78ca97f57d0bae2ee401c844b6ac80fcd972a9c99d09fe"
+      sha256: "23de31678a48c084169d7ae95866df9de5c9d2a44be3e5915a2ff067aeeba899"
       url: "https://pub.dev"
     source: hosted
-    version: "9.1.0"
+    version: "10.0.0"
   flutter_local_notifications_windows:
     dependency: transitive
     description:
       name: flutter_local_notifications_windows
-      sha256: "8d658f0d367c48bd420e7cf2d26655e2d1130147bca1eea917e576ca76668aaf"
+      sha256: "7ddd964fa85b6a23e96956c5b63ef55cdb9e5947b71b95712204db42ad46da61"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.3"
+    version: "2.0.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -649,10 +649,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_vodozemac
-      sha256: "16d4b44dd338689441fe42a80d0184e5c864e9563823de9e7e6371620d2c0590"
+      sha256: ef4c3580a7f2fe8eebb7602c6cba593a42b4a5e5466c372a022f77ccc14914a5
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.1"
+    version: "0.5.0"
   flutter_web_auth_2:
     dependency: "direct main"
     description:
@@ -1096,10 +1096,10 @@ packages:
     dependency: "direct main"
     description:
       name: matrix
-      sha256: f1c0cc366a8cd0b9aec6b57f81203c4d9aa9f92793f7ac12ae50410648b070e4
+      sha256: f5befb7a9e9658b0b0901cdda86407a909319712a30984ed177f7317ce5f24f1
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.0"
+    version: "6.1.0"
   meta:
     dependency: transitive
     description:
@@ -1184,10 +1184,10 @@ packages:
     dependency: "direct main"
     description:
       name: particles_network
-      sha256: "10350bbf446b504acf591b928b1a39ba687237a8895d73e6567abba1a2740c4c"
+      sha256: "53b5829f6551c9c079fb41f37bfa5fd514061557b4a5e596c34e26848dd19156"
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.0"
+    version: "1.9.1"
   path:
     dependency: "direct main"
     description:
@@ -1336,10 +1336,10 @@ packages:
     dependency: "direct main"
     description:
       name: pretty_qr_code
-      sha256: "2291db3f68d70a3dcd46c6bd599f30991ae4c02f27f36215fbb3f4865a609259"
+      sha256: "474f8a4512113fba06f14a6ec9bbf42353b4e651d7a520e3096f2a9b6bbe7a8a"
       url: "https://pub.dev"
     source: hosted
-    version: "3.5.0"
+    version: "3.6.0"
   process:
     dependency: transitive
     description:
@@ -2101,10 +2101,10 @@ packages:
     dependency: transitive
     description:
       name: vodozemac
-      sha256: "39144e20740807731871c9248d811ed5a037b21d0aa9ffcfa630954de74139d9"
+      sha256: bbe7dd31d7f623e2aeedb92e4b71a8b519e6109ce1e2911b5a220f6752b65cda
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.0"
+    version: "0.5.0"
   wakelock_plus:
     dependency: "direct main"
     description:
