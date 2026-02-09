@@ -1,3 +1,11 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 Krille Fear / FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-09: Treat ffchat.room_layout as important state event (Issue #25) - Simon
+// - 2026-02-09: Register im.ffchat.room_tags as important state event - Simon
+
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -121,6 +129,12 @@ abstract class ClientManager {
       importantStateEvents: <String>{
         // To make room emotes work
         'im.ponies.room_emotes',
+
+        // Room layout selection must update live for partial rooms.
+        'ffchat.room_layout',
+
+        // Notes tags must update live for partial rooms.
+        'im.ffchat.room_tags',
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
       database: await flutterMatrixSdkDatabaseBuilder(clientName),

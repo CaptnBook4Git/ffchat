@@ -4,6 +4,8 @@
 //
 // MODIFICATIONS:
 // - 2026-02-05: Create story rooms via displayname prefix - Simon
+// - 2026-02-09: Add flexible chatroom types (Issue #25) - Simon
+// - 2026-02-09: Extend creation flow with notes/bot layout state - Simon
 
 import 'dart:typed_data';
 
@@ -17,6 +19,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
 import 'package:fluffychat/utils/file_selector.dart';
+import 'package:fluffychat/utils/room_layout_type.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class NewGroup extends StatefulWidget {
@@ -68,8 +71,22 @@ class NewGroupController extends State<NewGroup> {
     });
   }
 
+  RoomLayoutType _selectedLayoutTypeForGroup() {
+    switch (createGroupType) {
+      case CreateGroupType.notes:
+        return RoomLayoutType.notes;
+      case CreateGroupType.bot:
+        return RoomLayoutType.bot;
+      case CreateGroupType.group:
+      case CreateGroupType.space:
+      case CreateGroupType.story:
+        return RoomLayoutType.normal;
+    }
+  }
+
   Future<void> _createGroup() async {
     if (!mounted) return;
+    final layoutType = _selectedLayoutTypeForGroup();
     final roomId = await Matrix.of(context).client.createGroupChat(
       visibility: groupCanBeFound
           ? sdk.Visibility.public
@@ -83,6 +100,12 @@ class NewGroupController extends State<NewGroup> {
           sdk.StateEvent(
             type: sdk.EventTypes.RoomAvatar,
             content: {'url': avatarUrl.toString()},
+          ),
+        if (layoutType != RoomLayoutType.normal)
+          sdk.StateEvent(
+            type: RoomLayoutTypeCodec.eventType,
+            stateKey: '',
+            content: {RoomLayoutTypeCodec.contentKey: layoutType.asString},
           ),
       ],
     );
@@ -156,6 +179,10 @@ class NewGroupController extends State<NewGroup> {
       switch (createGroupType) {
         case CreateGroupType.group:
           await _createGroup();
+        case CreateGroupType.notes:
+          await _createGroup();
+        case CreateGroupType.bot:
+          await _createGroup();
         case CreateGroupType.space:
           await _createSpace();
         case CreateGroupType.story:
@@ -174,4 +201,4 @@ class NewGroupController extends State<NewGroup> {
   Widget build(BuildContext context) => NewGroupView(this);
 }
 
-enum CreateGroupType { group, space, story }
+enum CreateGroupType { group, notes, bot, space, story }

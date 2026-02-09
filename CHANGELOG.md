@@ -3,6 +3,8 @@
 ### Changed
 - [FORK] Add Contact Circles with circle-based audience selection (Issue #4)
 
+- [FORK] Add flexible chatroom types (Normal, Notes, Bot) with pluggable layouts (Issue #25)
+
 - [FORK] Complete rebranding to FF Chat with new icons and updated splash screens (Issue #30)
 - [FORK] Add choice dialog for own story room (Issue #21)
 - [FORK] Rebranding to FF Chat (Issue #18)

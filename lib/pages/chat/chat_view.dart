@@ -1,9 +1,21 @@
-import 'dart:ui' as ui;
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 Krille Fear / FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-09: Add flexible chatroom types (Issue #25) - Simon
+// - 2026-02-09: Refactor body into pluggable layouts - Simon
+// - 2026-02-09: Add notes overview drawer action for notes layout - Simon
+// - 2026-02-09: Route notes drawer opening via controller notesScaffoldKey - Simon
+// - 2026-02-09: Provide notes endDrawer at ChatView scaffold level - Simon
+// - 2026-02-09: Align scroll-down FAB color with primaryContainer (Issue #25) - Simon
+// - 2026-02-09: Show add-note button in AppBar on mobile (Issue #25) - Simon
+// - 2026-02-09: Key notes layout to allow AppBar toggle (Issue #25) - Simon
+// - 2026-02-09: Show add-note action only when user can send (Issue #25) - Simon
 
 import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
-import 'package:desktop_drop/desktop_drop.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/setting_keys.dart';
@@ -12,20 +24,20 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
-import 'package:fluffychat/pages/chat/chat_event_list.dart';
+
 import 'package:fluffychat/pages/chat/encryption_button.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
-import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/pages/chat/layouts/chat_layout_factory.dart';
+import 'package:fluffychat/pages/chat/layouts/notes_chat_layout.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
+import 'package:fluffychat/utils/room_layout_type.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import '../../utils/stream_extension.dart';
-import 'chat_emoji_picker.dart';
-import 'chat_input_row.dart';
 
 enum _EventContextAction { info, report }
 
@@ -133,6 +145,24 @@ class ChatView extends StatelessWidget {
       ];
     } else if (!controller.room.isArchived) {
       return [
+        if (controller.layoutType == RoomLayoutType.notes &&
+            PlatformInfos.isMobile &&
+            controller.room.canSendDefaultMessages &&
+            controller.room.membership == Membership.join)
+          IconButton(
+            icon: const Icon(Icons.add_outlined),
+            tooltip: L10n.of(context).newNotes,
+            onPressed: controller.toggleNoteInput,
+          ),
+        if (controller.layoutType == RoomLayoutType.notes)
+          Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.notes_outlined),
+              tooltip: L10n.of(context).notesOverview,
+              onPressed: () =>
+                  controller.notesScaffoldKey.currentState?.openEndDrawer(),
+            ),
+          ),
         if (AppSettings.experimentalVoip.value &&
             Matrix.of(context).voipPlugin != null &&
             controller.room.isDirectChat)
@@ -158,10 +188,7 @@ class ChatView extends StatelessWidget {
         exceptionContext: ExceptionContext.joinRoom,
       );
     }
-    final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
     final scrollUpBannerEventId = controller.scrollUpBannerEventId;
-
-    final accountConfig = Matrix.of(context).client.applicationAccountConfig;
 
     return PopScope(
       canPop:
@@ -298,130 +325,33 @@ class ChatView extends StatelessWidget {
                         onPressed: controller.scrollDown,
                         heroTag: null,
                         mini: true,
-                        backgroundColor: theme.colorScheme.surface,
-                        foregroundColor: theme.colorScheme.onSurface,
+                        backgroundColor: theme.colorScheme.primaryContainer,
+                        foregroundColor: theme.colorScheme.onPrimaryContainer,
                         child: const Icon(Icons.arrow_downward_outlined),
                       ),
                     )
                   : null,
-              body: DropTarget(
-                onDragDone: controller.onDragDone,
-                onDragEntered: controller.onDragEntered,
-                onDragExited: controller.onDragExited,
-                child: Stack(
-                  children: <Widget>[
-                    if (accountConfig.wallpaperUrl != null)
-                      Opacity(
-                        opacity: accountConfig.wallpaperOpacity ?? 0.5,
-                        child: ImageFiltered(
-                          imageFilter: ui.ImageFilter.blur(
-                            sigmaX: accountConfig.wallpaperBlur ?? 0.0,
-                            sigmaY: accountConfig.wallpaperBlur ?? 0.0,
-                          ),
-                          child: MxcImage(
-                            cacheKey: accountConfig.wallpaperUrl.toString(),
-                            uri: accountConfig.wallpaperUrl,
-                            fit: BoxFit.cover,
-                            height: MediaQuery.sizeOf(context).height,
-                            width: MediaQuery.sizeOf(context).width,
-                            isThumbnail: false,
-                            placeholder: (_) => Container(),
-                          ),
-                        ),
-                      ),
-                    SafeArea(
-                      child: Column(
-                        children: <Widget>[
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: controller.clearSingleSelectedEvent,
-                              child: ChatEventList(controller: controller),
-                            ),
-                          ),
-                          if (controller.showScrollDownButton)
-                            Divider(height: 1, color: theme.dividerColor),
-                          if (controller.room.isExtinct)
-                            Container(
-                              margin: EdgeInsets.all(bottomSheetPadding),
-                              width: double.infinity,
-                              child: ElevatedButton.icon(
-                                icon: const Icon(Icons.chevron_right),
-                                label: Text(L10n.of(context).enterNewChat),
-                                onPressed: controller.goToNewRoomAction,
-                              ),
-                            )
-                          else if (controller.room.canSendDefaultMessages &&
-                              controller.room.membership == Membership.join)
-                            Container(
-                              margin: EdgeInsets.all(bottomSheetPadding),
-                              constraints: const BoxConstraints(
-                                maxWidth: FluffyThemes.maxTimelineWidth,
-                              ),
-                              alignment: Alignment.center,
-                              child: Material(
-                                clipBehavior: Clip.hardEdge,
-                                color: controller.selectedEvents.isNotEmpty
-                                    ? theme.colorScheme.tertiaryContainer
-                                    : theme.colorScheme.surfaceContainerHigh,
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(24),
-                                ),
-                                child: controller.room.isAbandonedDMRoom == true
-                                    ? Row(
-                                        mainAxisAlignment: .spaceEvenly,
-                                        children: [
-                                          TextButton.icon(
-                                            style: TextButton.styleFrom(
-                                              padding: const EdgeInsets.all(16),
-                                              foregroundColor:
-                                                  theme.colorScheme.error,
-                                            ),
-                                            icon: const Icon(
-                                              Icons.archive_outlined,
-                                            ),
-                                            onPressed: controller.leaveChat,
-                                            label: Text(L10n.of(context).leave),
-                                          ),
-                                          TextButton.icon(
-                                            style: TextButton.styleFrom(
-                                              padding: const EdgeInsets.all(16),
-                                            ),
-                                            icon: const Icon(
-                                              Icons.forum_outlined,
-                                            ),
-                                            onPressed: controller.recreateChat,
-                                            label: Text(
-                                              L10n.of(context).reopenChat,
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    : Column(
-                                        mainAxisSize: .min,
-                                        children: [
-                                          ReplyDisplay(controller),
-                                          ChatInputRow(controller),
-                                          ChatEmojiPicker(controller),
-                                        ],
-                                      ),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                    if (controller.dragging)
-                      Container(
-                        color: theme.scaffoldBackgroundColor.withAlpha(230),
-                        alignment: Alignment.center,
-                        child: const Icon(Icons.upload_outlined, size: 100),
-                      ),
-                  ],
-                ),
-              ),
+              body: _ChatLayoutKeyed(controller: controller),
             );
           },
         ),
       ),
     );
+  }
+}
+
+class _ChatLayoutKeyed extends StatelessWidget {
+  final ChatController controller;
+  const _ChatLayoutKeyed({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    if (controller.layoutType == RoomLayoutType.notes) {
+      return NotesChatLayout(
+        key: controller.notesLayoutKey,
+        controller: controller,
+      );
+    }
+    return ChatLayoutFactory.create(controller.layoutType, controller);
   }
 }

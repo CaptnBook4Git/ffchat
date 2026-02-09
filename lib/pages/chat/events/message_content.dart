@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 Krille Fear / FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-09: Render im.ffchat.note messages with NoteEventContent - Simon
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -25,6 +32,7 @@ import 'html_message.dart';
 import 'image_bubble.dart';
 import 'map_bubble.dart';
 import 'message_download_content.dart';
+import 'note_event_content.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
@@ -103,6 +111,20 @@ class MessageContent extends StatelessWidget {
     final fontSize =
         AppConfig.messageFontSize * AppSettings.fontSizeFactor.value;
     final buttonTextColor = textColor;
+
+    final content = event.content;
+    final hasNoteContent =
+        content is Map && content.containsKey('im.ffchat.note');
+
+    if (event.type == EventTypes.Message && hasNoteContent) {
+      return NoteEventContent(
+        event: event,
+        textColor: textColor,
+        linkColor: linkColor,
+        fontSize: fontSize,
+        selected: selected,
+      );
+    }
     switch (event.type) {
       case EventTypes.Message:
       case EventTypes.Encrypted:

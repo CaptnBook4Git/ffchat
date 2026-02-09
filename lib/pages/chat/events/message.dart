@@ -1,3 +1,14 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 Krille Fear / FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-09: Add flexible chatroom types (Issue #25) - Simon
+// - 2026-02-09: Add option to hide avatars for notes layout - Simon
+// - 2026-02-09: Fix avatar spacing when avatars are hidden (Issue #25) - Simon
+// - 2026-02-09: Use NoteEventContent for im.ffchat.note events - Simon
+// - 2026-02-09: Remove redundant note renderer dispatch - Simon
+
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -48,6 +59,7 @@ class Message extends StatelessWidget {
   final List<Color> colors;
   final void Function()? onExpand;
   final bool isCollapsed;
+  final bool showAvatar;
 
   const Message(
     this.event, {
@@ -73,6 +85,7 @@ class Message extends StatelessWidget {
     this.onExpand,
     required this.enterThread,
     this.isCollapsed = false,
+    this.showAvatar = true,
     super.key,
   });
 
@@ -333,6 +346,8 @@ class Message extends StatelessWidget {
                                         onPressed: () => onSelect(event),
                                       ),
                                     )
+                                  else if (!showAvatar)
+                                    const SizedBox.shrink()
                                   else if (nextEventSameSender || ownMessage)
                                     SizedBox(
                                       width: Avatar.defaultSize,

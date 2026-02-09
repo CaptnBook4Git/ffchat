@@ -1,3 +1,12 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 Krille Fear / FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-09: Add flexible chatroom types (Issue #25) - Simon
+// - 2026-02-09: Add Notes/Bot segments to new group UI - Simon
+// - 2026-02-09: Localize Notes/Bot labels and titles - Simon
+
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/themes.dart';
@@ -28,9 +37,13 @@ class NewGroupView extends StatelessWidget {
         title: Text(
           controller.createGroupType == CreateGroupType.space
               ? L10n.of(context).newSpace
+              : controller.createGroupType == CreateGroupType.notes
+              ? L10n.of(context).newNotes
+              : controller.createGroupType == CreateGroupType.bot
+              ? L10n.of(context).newBot
               : controller.createGroupType == CreateGroupType.story
-                  ? L10n.of(context).newStory
-                  : L10n.of(context).createGroup,
+              ? L10n.of(context).newStory
+              : L10n.of(context).createGroup,
         ),
       ),
       body: MaxWidthBody(
@@ -46,6 +59,14 @@ class NewGroupView extends StatelessWidget {
                   ButtonSegment(
                     value: CreateGroupType.group,
                     label: Text(L10n.of(context).group),
+                  ),
+                  ButtonSegment(
+                    value: CreateGroupType.notes,
+                    label: Text(L10n.of(context).roomLayoutNotes),
+                  ),
+                  ButtonSegment(
+                    value: CreateGroupType.bot,
+                    label: Text(L10n.of(context).roomLayoutBot),
                   ),
                   ButtonSegment(
                     value: CreateGroupType.space,
@@ -89,14 +110,22 @@ class NewGroupView extends StatelessWidget {
                   prefixIcon: const Icon(Icons.people_outlined),
                   labelText: controller.createGroupType == CreateGroupType.space
                       ? L10n.of(context).spaceName
+                      : controller.createGroupType == CreateGroupType.notes
+                      ? L10n.of(context).groupName
+                      : controller.createGroupType == CreateGroupType.bot
+                      ? L10n.of(context).groupName
                       : controller.createGroupType == CreateGroupType.story
-                          ? L10n.of(context).storyName
-                          : L10n.of(context).groupName,
+                      ? L10n.of(context).storyName
+                      : L10n.of(context).groupName,
                 ),
               ),
             ),
             const SizedBox(height: 16),
-            if (controller.createGroupType != CreateGroupType.story)
+            if (!{
+              CreateGroupType.story,
+              CreateGroupType.notes,
+              CreateGroupType.bot,
+            }.contains(controller.createGroupType))
               SwitchListTile.adaptive(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 32),
                 secondary: const Icon(Icons.public_outlined),
@@ -106,7 +135,9 @@ class NewGroupView extends StatelessWidget {
                       : L10n.of(context).groupIsPublic,
                 ),
                 value: controller.publicGroup,
-                onChanged: controller.loading ? null : controller.setPublicGroup,
+                onChanged: controller.loading
+                    ? null
+                    : controller.setPublicGroup,
               ),
             AnimatedSize(
               duration: FluffyThemes.animationDuration,
@@ -128,8 +159,13 @@ class NewGroupView extends StatelessWidget {
             AnimatedSize(
               duration: FluffyThemes.animationDuration,
               curve: FluffyThemes.animationCurve,
-              child: controller.createGroupType == CreateGroupType.space ||
-                      controller.createGroupType == CreateGroupType.story
+              child:
+                  {
+                    CreateGroupType.space,
+                    CreateGroupType.story,
+                    CreateGroupType.notes,
+                    CreateGroupType.bot,
+                  }.contains(controller.createGroupType)
                   ? const SizedBox.shrink()
                   : SwitchListTile.adaptive(
                       contentPadding: const EdgeInsets.symmetric(
@@ -173,13 +209,15 @@ class NewGroupView extends StatelessWidget {
                       : controller.submitAction,
                   child: controller.loading
                       ? const LinearProgressIndicator()
-                      : Text(
-                          controller.createGroupType == CreateGroupType.space
-                              ? L10n.of(context).createNewSpace
-                              : controller.createGroupType == CreateGroupType.story
-                                  ? L10n.of(context).createNewStory
-                                  : L10n.of(context).createGroupAndInviteUsers,
-                        ),
+                      : controller.createGroupType == CreateGroupType.space
+                      ? Text(L10n.of(context).createNewSpace)
+                      : controller.createGroupType == CreateGroupType.notes
+                      ? Text(L10n.of(context).createNewNotes)
+                      : controller.createGroupType == CreateGroupType.bot
+                      ? Text(L10n.of(context).createNewBot)
+                      : controller.createGroupType == CreateGroupType.story
+                      ? Text(L10n.of(context).createNewStory)
+                      : Text(L10n.of(context).createGroupAndInviteUsers),
                 ),
               ),
             ),
