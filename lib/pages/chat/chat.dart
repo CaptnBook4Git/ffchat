@@ -1,3 +1,13 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 Krille Fear / FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-09: Add flexible chatroom types (Issue #25) - Simon
+// - 2026-02-09: Expose room layout type on ChatController - Simon
+// - 2026-02-09: Add scaffold key to open notes endDrawer - Simon
+// - 2026-02-09: Add controller hook to toggle notes input (Issue #25) - Simon
+
 import 'dart:async';
 import 'dart:io';
 
@@ -37,6 +47,7 @@ import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart'
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
+import 'package:fluffychat/utils/room_layout_type.dart';
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
 import 'send_file_dialog.dart';
@@ -97,6 +108,18 @@ class ChatPageWithRoom extends StatefulWidget {
 class ChatController extends State<ChatPageWithRoom>
     with WidgetsBindingObserver {
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
+
+  RoomLayoutType get layoutType => room.layoutType;
+
+  /// Used by [NotesChatLayout] to expose its endDrawer to the app bar action.
+  final GlobalKey<ScaffoldState> notesScaffoldKey = GlobalKey<ScaffoldState>();
+
+  /// Used to toggle note input from the app bar on mobile.
+  final GlobalKey notesLayoutKey = GlobalKey();
+
+  Future<void> toggleNoteInput() async {
+    await (notesLayoutKey.currentState as dynamic)?.toggleNoteInput();
+  }
 
   late Client sendingClient;
 

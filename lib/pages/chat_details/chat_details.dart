@@ -1,3 +1,12 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 Krille Fear / FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-08: Add room layout selection action in chat details (Issue #25) - Simon
+// - 2026-02-08: Apply layout change to local room state immediately - Simon
+// - 2026-02-09: Fix build error in StrippedStateEvent and update AGPL header - Simon
+
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -11,6 +20,7 @@ import 'package:fluffychat/pages/settings/settings.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/room_layout_type.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -151,6 +161,56 @@ class ChatDetailsController extends State<ChatDetails> {
       context: context,
       future: () => room!.setAvatar(file),
     );
+  }
+
+  void setLayoutTypeAction() async {
+    final room = Matrix.of(context).client.getRoomById(roomId!)!;
+    final currentType = room.layoutType;
+
+    final action = await showModalActionPopup<RoomLayoutType>(
+      context: context,
+      title: L10n.of(context).roomLayout,
+      cancelLabel: L10n.of(context).cancel,
+      actions: [
+        AdaptiveModalAction(
+          value: RoomLayoutType.normal,
+          label: L10n.of(context).roomLayoutNormal,
+          isDefaultAction: currentType == RoomLayoutType.normal,
+          icon: const Icon(Icons.chat_bubble_outline),
+        ),
+        AdaptiveModalAction(
+          value: RoomLayoutType.notes,
+          label: L10n.of(context).roomLayoutNotes,
+          isDefaultAction: currentType == RoomLayoutType.notes,
+          icon: const Icon(Icons.note_outlined),
+        ),
+        AdaptiveModalAction(
+          value: RoomLayoutType.bot,
+          label: L10n.of(context).roomLayoutBot,
+          isDefaultAction: currentType == RoomLayoutType.bot,
+          icon: const Icon(Icons.smart_toy_outlined),
+        ),
+      ],
+    );
+    if (action == null || action == currentType) return;
+
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () => room.setLayoutType(action),
+    );
+    if (success.error == null) {
+      // Ensure the UI reacts immediately even if the next sync is delayed.
+      final newEvent = StrippedStateEvent(
+        type: RoomLayoutTypeCodec.eventType,
+        content: {RoomLayoutTypeCodec.contentKey: action.asString},
+        stateKey: '',
+        senderId: room.client.userID!,
+      );
+      room.setState(newEvent);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(L10n.of(context).roomLayoutChanged)),
+      );
+    }
   }
 
   static const fixedWidth = 360.0;

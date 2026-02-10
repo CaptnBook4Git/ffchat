@@ -1,3 +1,11 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 Krille Fear / FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-08: Add flexible chatroom types (Issue #25) - Simon
+// - 2026-02-08: Make receipts/typing/avatar display configurable - Simon
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +24,17 @@ import 'package:fluffychat/utils/platform_infos.dart';
 
 class ChatEventList extends StatelessWidget {
   final ChatController controller;
+  final bool showAvatars;
+  final bool showReadReceipts;
+  final bool showTypingIndicators;
 
-  const ChatEventList({super.key, required this.controller});
+  const ChatEventList({
+    super.key,
+    required this.controller,
+    this.showAvatars = true,
+    this.showReadReceipts = true,
+    this.showTypingIndicators = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -77,10 +94,13 @@ class ChatEventList extends StatelessWidget {
                   ),
                 );
               }
-              return Column(
-                mainAxisSize: .min,
-                children: [SeenByRow(controller), TypingIndicators(controller)],
-              );
+              final children = <Widget>[];
+              if (showReadReceipts) children.add(SeenByRow(controller));
+              if (showTypingIndicators) {
+                children.add(TypingIndicators(controller));
+              }
+              if (children.isEmpty) return const SizedBox.shrink();
+              return Column(mainAxisSize: .min, children: children);
             }
 
             // Request history button or progress indicator:
@@ -180,6 +200,7 @@ class ChatEventList extends StatelessWidget {
                         !controller.expandedEventIds.contains(event.eventId),
                       )
                     : null,
+                showAvatar: showAvatars,
               ),
             );
           },

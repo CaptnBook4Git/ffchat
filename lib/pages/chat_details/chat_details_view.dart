@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2021-2026 Krille Fear / FluffyChat Contributors
+// Copyright (c) 2026 Simon
+//
+// MODIFICATIONS:
+// - 2026-02-08: Add room layout selection UI in chat details (Issue #25) - Simon
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -9,6 +16,7 @@ import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/room_layout_type.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -257,6 +265,28 @@ class ChatDetailsView extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                         ],
+                        Divider(color: theme.dividerColor),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: theme.colorScheme.surfaceContainer,
+                            foregroundColor: iconColor,
+                            child: const Icon(Icons.view_quilt_outlined),
+                          ),
+                          title: Text(L10n.of(context).roomLayout),
+                          subtitle: Text(switch (room.layoutType) {
+                            RoomLayoutType.normal => L10n.of(
+                              context,
+                            ).roomLayoutNormal,
+                            RoomLayoutType.notes => L10n.of(
+                              context,
+                            ).roomLayoutNotes,
+                            RoomLayoutType.bot => L10n.of(
+                              context,
+                            ).roomLayoutBot,
+                          }),
+                          onTap: controller.setLayoutTypeAction,
+                          trailing: const Icon(Icons.chevron_right_outlined),
+                        ),
                         if (!room.isDirectChat) ...[
                           Divider(color: theme.dividerColor),
                           ListTile(
