@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -32,7 +33,7 @@ class LoginController extends State<Login> {
   void toggleShowPassword() =>
       setState(() => showPassword = !loading && !showPassword);
 
-  void login() async {
+  Future<void> login() async {
     final matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
       setState(() => usernameError = L10n.of(context).pleaseEnterYourUsername);
@@ -81,6 +82,9 @@ class LoginController extends State<Login> {
         password: passwordController.text,
         initialDeviceDisplayName: PlatformInfos.clientName,
       );
+      if (mounted) {
+        context.go('/backup');
+      }
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
       return setState(() => loading = false);
@@ -94,7 +98,7 @@ class LoginController extends State<Login> {
 
   Timer? _coolDown;
 
-  void checkWellKnownWithCoolDown(String userId) async {
+  void checkWellKnownWithCoolDown(String userId) {
     _coolDown?.cancel();
     _coolDown = Timer(
       const Duration(seconds: 1),
@@ -102,7 +106,7 @@ class LoginController extends State<Login> {
     );
   }
 
-  void _checkWellKnown(String userId) async {
+  Future<void> _checkWellKnown(String userId) async {
     if (mounted) setState(() => usernameError = null);
     if (!userId.isValidMatrixId) return;
     final oldHomeserver = widget.client.homeserver;
@@ -158,7 +162,7 @@ class LoginController extends State<Login> {
     }
   }
 
-  void passwordForgotten() async {
+  Future<void> passwordForgotten() async {
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
@@ -207,7 +211,7 @@ class LoginController extends State<Login> {
     final data = <String, dynamic>{
       'new_password': password,
       'logout_devices': false,
-      "auth": AuthenticationThreePidCreds(
+      'auth': AuthenticationThreePidCreds(
         type: AuthenticationTypes.emailIdentity,
         threepidCreds: ThreepidCreds(
           sid: response.result!.sid,

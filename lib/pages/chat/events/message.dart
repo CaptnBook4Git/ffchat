@@ -209,7 +209,7 @@ class Message extends StatelessWidget {
       );
     }
 
-    final showReceiptsRow = event.hasAggregatedEvents(
+    final hasReactions = event.hasAggregatedEvents(
       timeline,
       RelationshipTypes.reaction,
     );
@@ -223,6 +223,7 @@ class Message extends StatelessWidget {
         singleSelected && event.room.canSendDefaultMessages;
 
     final enterThread = this.enterThread;
+    final sender = event.senderFromMemoryOrFallback;
 
     return Center(
       child: Swipeable(
@@ -373,9 +374,7 @@ class Message extends StatelessWidget {
                                     FutureBuilder<User?>(
                                       future: event.fetchSenderUser(),
                                       builder: (context, snapshot) {
-                                        final user =
-                                            snapshot.data ??
-                                            event.senderFromMemoryOrFallback;
+                                        final user = snapshot.data ?? sender;
                                         return Avatar(
                                           mxContent: user.avatarUrl,
                                           name: user.calcDisplayname(),
@@ -407,52 +406,78 @@ class Message extends StatelessWidget {
                                                 ownMessage ||
                                                     event.room.isDirectChat
                                                 ? const SizedBox(height: 12)
-                                                : FutureBuilder<User?>(
-                                                    future: event
-                                                        .fetchSenderUser(),
-                                                    builder: (context, snapshot) {
-                                                      final displayname =
-                                                          snapshot.data
-                                                              ?.calcDisplayname() ??
-                                                          event
-                                                              .senderFromMemoryOrFallback
-                                                              .calcDisplayname();
-                                                      return Text(
-                                                        displayname,
-                                                        style: TextStyle(
-                                                          fontSize: 11,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color:
-                                                              (theme.brightness ==
-                                                                  Brightness
-                                                                      .light
-                                                              ? displayname
-                                                                    .color
-                                                              : displayname
-                                                                    .lightColorText),
-                                                          shadows:
-                                                              !wallpaperMode
-                                                              ? null
-                                                              : [
-                                                                  const Shadow(
-                                                                    offset:
-                                                                        Offset(
-                                                                          0.0,
-                                                                          0.0,
-                                                                        ),
-                                                                    blurRadius:
-                                                                        3,
-                                                                    color: Colors
-                                                                        .black,
-                                                                  ),
-                                                                ],
+                                                : Row(
+                                                    children: [
+                                                      if (sender.powerLevel >=
+                                                          50)
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets.only(
+                                                                right: 2.0,
+                                                              ),
+                                                          child: Icon(
+                                                            sender.powerLevel >=
+                                                                    100
+                                                                ? Icons
+                                                                      .admin_panel_settings
+                                                                : Icons
+                                                                      .add_moderator_outlined,
+                                                            size: 14,
+                                                            color: theme
+                                                                .colorScheme
+                                                                .onPrimaryContainer,
+                                                          ),
                                                         ),
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                      );
-                                                    },
+                                                      Expanded(
+                                                        child: FutureBuilder<User?>(
+                                                          future: event
+                                                              .fetchSenderUser(),
+                                                          builder: (context, snapshot) {
+                                                            final displayname =
+                                                                snapshot.data
+                                                                    ?.calcDisplayname() ??
+                                                                sender
+                                                                    .calcDisplayname();
+                                                            return Text(
+                                                              displayname,
+                                                              style: TextStyle(
+                                                                fontSize: 11,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color:
+                                                                    (theme.brightness ==
+                                                                        Brightness
+                                                                            .light
+                                                                    ? displayname
+                                                                          .color
+                                                                    : displayname
+                                                                          .lightColorText),
+                                                                shadows:
+                                                                    !wallpaperMode
+                                                                    ? null
+                                                                    : [
+                                                                        const Shadow(
+                                                                          offset: Offset(
+                                                                            0.0,
+                                                                            0.0,
+                                                                          ),
+                                                                          blurRadius:
+                                                                              3,
+                                                                          color:
+                                                                              Colors.black,
+                                                                        ),
+                                                                      ],
+                                                              ),
+                                                              maxLines: 1,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                           ),
                                         Container(
@@ -856,15 +881,16 @@ class Message extends StatelessWidget {
                   );
                 },
               ),
+
               AnimatedSize(
                 duration: FluffyThemes.animationDuration,
                 curve: FluffyThemes.animationCurve,
                 alignment: Alignment.bottomCenter,
-                child: !showReceiptsRow
+                child: !hasReactions
                     ? const SizedBox.shrink()
                     : Padding(
                         padding: EdgeInsets.only(
-                          top: 4.0,
+                          top: 1.0,
                           left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
                           right: ownMessage ? 0 : 12.0,
                         ),

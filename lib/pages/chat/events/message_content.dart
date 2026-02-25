@@ -10,6 +10,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/setting_keys.dart';
@@ -54,7 +55,7 @@ class MessageContent extends StatelessWidget {
     required this.selected,
   });
 
-  void _verifyOrRequestKey(BuildContext context) async {
+  Future<void> _verifyOrRequestKey(BuildContext context) async {
     final l10n = L10n.of(context);
     if (event.content['can_request_session'] != true) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -65,7 +66,8 @@ class MessageContent extends StatelessWidget {
       return;
     }
     final client = Matrix.of(context).client;
-    if (client.isUnknownSession && client.encryption!.crossSigning.enabled) {
+    final state = await client.getCryptoIdentityState();
+    if (!state.connected) {
       final success = await context.push('/backup');
       if (success != true) return;
     }
@@ -227,7 +229,7 @@ class MessageContent extends StatelessWidget {
                   .split(';')
                   .first
                   .split(',')
-                  .map((s) => double.tryParse(s))
+                  .map(double.tryParse)
                   .toList();
               if (latlong.length == 2 &&
                   latlong.first != null &&

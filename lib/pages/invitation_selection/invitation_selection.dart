@@ -78,7 +78,11 @@ class InvitationSelectionController extends State<InvitationSelection> {
     return contacts;
   }
 
-  void inviteAction(BuildContext context, String id, String displayname) async {
+  Future<void> inviteAction(
+    BuildContext context,
+    String id,
+    String displayname,
+  ) async {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
 
     final success = await showFutureLoadingDialog(
@@ -94,7 +98,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
     }
   }
 
-  void searchUserWithCoolDown(String text) async {
+  void searchUserWithCoolDown(String text) {
     coolDown?.cancel();
     coolDown = Timer(
       const Duration(milliseconds: 500),
@@ -102,7 +106,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
     );
   }
 
-  void searchUser(BuildContext context, String text) async {
+  Future<void> searchUser(BuildContext context, String text) async {
     coolDown?.cancel();
     if (text.isEmpty) {
       setState(() => foundProfiles = []);
